@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -26,7 +26,6 @@ const SignUpForm = () => {
 
   const [errors, setErrors] = useState({});
 
-  const history = useHistory();
 
   const handleChange = (event) => {
     setSignUpData({
@@ -39,7 +38,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      redirect("/signin");
     } catch (err) {
       setErrors(err.response?.data);
     }

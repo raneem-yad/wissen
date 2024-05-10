@@ -16,19 +16,34 @@ function NavBar() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="ml-auto text-left">
-                <NavLink exact className={styles.NavLink}
-              activeClassName={styles.Active}
+                <NavLink 
+                // exact 
+                // className={styles.NavLink}
+                className={({ isActive, isPending }) =>
+                isActive
+                    ? "active"
+                    : isPending
+                        ? "pending"
+                        : ""}
               to="/">
                   <i className="fas fa-home"></i> Home
                 </NavLink>
-                <NavLink  className={styles.NavLink}
-              activeClassName={styles.Active}
+                <NavLink  className={({ isActive, isPending }) =>
+                                isActive
+                                    ? "active"
+                                    : isPending
+                                        ? "pending"
+                                        : ""}
               to="/signin">
                   <i className="fas fa-sign-in-alt"></i> Sign in
                 </NavLink>
                 <NavLink to="/signup"
-              className={styles.NavLink}
-              activeClassName={styles.Active}>
+              className={({ isActive, isPending }) =>
+              isActive
+                  ? "active"
+                  : isPending
+                      ? "pending"
+                      : ""}>
                   <i className="fas fa-user-plus"></i> Sign up
                 </NavLink>
               </Nav>
