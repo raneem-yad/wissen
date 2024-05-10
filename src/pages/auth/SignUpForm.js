@@ -14,15 +14,17 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-import axios from "axios";
+import axiosInstance from "../../api/axiosDefaults";
+
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: "",
+    email:"",
     password1: "",
     password2: "",
   });
-  const { username, password1, password2 } = signUpData;
+  const { username, email,  password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 
@@ -37,9 +39,11 @@ const SignUpForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post("/dj-rest-auth/registration/", signUpData);
+      await axiosInstance.post("/dj-rest-auth/registration/", signUpData);
       redirect("/signin");
     } catch (err) {
+      console.log("errrror");
+      console.log(err)
       setErrors(err.response?.data);
     }
   };
@@ -63,6 +67,23 @@ const SignUpForm = () => {
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="email">
+              <Form.Label className="d-none">email</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="email"
+                placeholder="Email"
+                name="email"
+                value={email}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.email?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
