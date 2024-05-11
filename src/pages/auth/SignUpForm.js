@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, redirect } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -20,31 +20,40 @@ import axiosInstance from "../../api/axiosDefaults";
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
     username: "",
+    full_name :"", 
     email:"",
     password1: "",
     password2: "",
+    is_instructor: false,
   });
-  const { username, email,  password1, password2 } = signUpData;
+  const { username, full_name, email,  password1, password2 , is_instructor  } = signUpData;
 
   const [errors, setErrors] = useState({});
-
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
+    const { name, value, checked, type } = event.target;
     setSignUpData({
       ...signUpData,
-      [event.target.name]: event.target.value,
+      [name]:type === 'checkbox' ? checked : value,
+
     });
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
     try {
       await axiosInstance.post("/dj-rest-auth/registration/", signUpData);
-      redirect("/signin");
+      setLoading(false); 
+      navigate("/signin", { replace: true });
+      // redirect("/signin");
     } catch (err) {
       console.log("errrror");
       console.log(err)
       setErrors(err.response?.data);
+      setLoading(false);
     }
   };
 
@@ -67,6 +76,23 @@ const SignUpForm = () => {
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="full_name">
+              <Form.Label className="d-none">full_name</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="text"
+                placeholder="Full Name"
+                name="full_name"
+                value={full_name}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            {errors.full_name?.map((message, idx) => (
               <Alert variant="warning" key={idx}>
                 {message}
               </Alert>
@@ -123,11 +149,20 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
+            <Form.Group controlId="checkbox">
+                <Form.Check type="checkbox" 
+                  label="Register as an instructor" 
+                  name="is_instructor" 
+                  checked={is_instructor}
+                  onChange={handleChange} />
+              </Form.Group>
+
+
+
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide} ${btnStyles.Bright}`}
-              type="submit"
-            >
-              Sign up
+              type="submit" disabled={loading} >
+              {loading ? "Loading..." : "Sign up"}
             </Button>
             {errors.non_field_errors?.map((message, idx) => (
               <Alert key={idx} variant="warning" className="mt-3">
