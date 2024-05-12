@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axiosInstance from "../../api/axiosDefaults";
+import axios from "axios";
 
 
 import Form from "react-bootstrap/Form";
@@ -15,8 +15,11 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
-const SignInForm = () => {
+function SignInForm() {
+  const setCurrentUser = useSetCurrentUser();
+
   const [signInData, setSignInData] = useState({
     username: "",
     password: "",
@@ -32,8 +35,13 @@ const SignInForm = () => {
     event.preventDefault();
     setLoading(true);
     try {
-      await axiosInstance.post("/dj-rest-auth/login/", signInData);
+      // const { data } = await axios.post("https://wissen-api-61cc6e37e2b8.herokuapp.com/dj-rest-auth/login/", signInData);
+      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
+      
       setLoading(false); 
+      console.log(` data is ${data.user}`);
+      console.log(` data key is ${data.key}`);
+      setCurrentUser(data.user);
       navigate("/", { replace: true });
     } catch (err) {
       setErrors(err.response?.data);

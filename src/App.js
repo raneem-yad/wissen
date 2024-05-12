@@ -3,9 +3,13 @@ import NavBar from './components/NavBar';
 import Container from "react-bootstrap/Container";
 import { Routes , Route } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
-import SignInForm from './pages/auth/LogInForm';
+import SignInForm from './pages/auth/SignInForm';
+import { createContext } from 'react';
 
+export const CurrentUserContext = createContext();
+export const SetCurrentUserContext = createContext();
 function App() {
+
   return (
     <div className={styles.App}>
       <NavBar/>
