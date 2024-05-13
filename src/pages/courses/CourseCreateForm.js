@@ -114,20 +114,22 @@ function CourseCreateForm({ navigation }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const tagsArray = selectedTags.map(tag => parseInt(tag));
     const formData = new FormData();
 
     formData.append("course_name", title);
     formData.append("summery", summary);
     formData.append("level", level);
-    formData.append("description", summary);
-    formData.append("course_requirements", summary);
-    formData.append("learning_goals", summary);
+    formData.append("category", selectedCategory);
+    tagsArray.forEach(tag => formData.append("tags", tag));
+    formData.append("description", description);
+    formData.append("course_requirements", course_requirement);
+    formData.append("learning_goals", learning_goals);
     formData.append("image", imageInput.current.files[0]);
 
-    console.log(formData)
     try {
       const { data } = await axiosReq.post("/courses/", formData);
-      navigate.push(`/courses/${data.id}`);
+      navigate(`/courses/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -389,7 +391,6 @@ function CourseCreateForm({ navigation }) {
                 ref={imageInput}
               />
             </Form.Group>
-            <div className="d-md-none">{textFields}</div>
           </Container>
           <Container className={appStyles.Content}>{actionsButtons}</Container>
       </Row>
