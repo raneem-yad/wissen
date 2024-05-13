@@ -5,6 +5,7 @@ import { Routes , Route } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from './pages/auth/SignInForm';
 import { createContext } from 'react';
+import PostCreateForm from './pages/courses/CourseCreateForm';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -15,10 +16,12 @@ function App() {
       <NavBar/>
       <Container className={styles.Main}>
         <Routes>
-          <Route  path="/" element={() => <h1>Home page</h1>} />
+          <Route  path="/" element={<h1>Home page</h1>} />
           <Route  path="/signin" element={<SignInForm/>} />
           <Route  path="/signup" element={ <SignUpForm/>} />
-          <Route element={() => <p>Page not found!</p>} />
+          {/* courses links */}
+          <Route  path="/courses/create" element={ <PostCreateForm/>} />
+          <Route element={<p>Page not found!</p>} />
         </Routes>
       </Container>
     </div>
