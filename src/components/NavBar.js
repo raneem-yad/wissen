@@ -95,7 +95,7 @@ function NavBar() {
                 isActive ? "active" : isPending ? "pending" : ""
               }
             >
-              <i class="fa-solid fa-book-open-reader"></i>courses
+              <i className="fa-solid fa-book-open-reader"></i>courses
             </NavLink>
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>

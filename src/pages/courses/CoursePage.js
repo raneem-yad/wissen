@@ -9,6 +9,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/CourseCreateEditForm.module.css";
 import CourseDetails from "./CourseDetails";
+import axios from "axios";
 
 function CoursePage() {
   const { id } = useParams();
