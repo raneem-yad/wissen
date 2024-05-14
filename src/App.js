@@ -4,8 +4,9 @@ import { Routes , Route } from "react-router-dom";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from './pages/auth/SignInForm';
 import { createContext } from 'react';
-import PostCreateForm from './pages/courses/CourseCreateForm';
+import CourseCreateForm from './pages/courses/CourseCreateForm';
 import Home from './pages/Home';
+import CoursePage from './pages/courses/CoursePage';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -20,7 +21,8 @@ function App() {
           <Route  path="/signin" element={<SignInForm/>} />
           <Route  path="/signup" element={ <SignUpForm/>} />
           {/* courses links */}
-          <Route  path="/courses/create" element={ <PostCreateForm/>} />
+          <Route  path="/courses/create" element={ <CourseCreateForm/>} />
+          <Route  path="/courses/:id" element={ <CoursePage/>} />
           <Route element={<p>Page not found!</p>} />
         </Routes>
       {/* </Container> */}

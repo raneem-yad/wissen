@@ -14,7 +14,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
-function CourseCreateForm({ navigation }) {
+function CourseCreateForm() {
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
