@@ -9,7 +9,6 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useParams } from "react-router-dom";
 import styles from "../../styles/CourseCreateEditForm.module.css";
 import CourseDetails from "./CourseDetails";
-import axios from "axios";
 
 function CoursePage() {
   const { id } = useParams();
@@ -33,7 +32,7 @@ function CoursePage() {
 
   return (
     <Container>
-      <Row className={`h-100 ${styles.TopMArgin}`}>
+      <Row className={`h-100 ${styles.CourseTopSection}`}>
         <CourseDetails {...course.results[0]} coursePage />
       </Row>
       <Row>

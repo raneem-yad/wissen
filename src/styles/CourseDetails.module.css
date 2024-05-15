@@ -1,0 +1,17 @@
+.Info h1 {
+    font-size: 3.5rem;
+    padding: 30px  0;
+
+}
+.Info > p {
+    margin: 20px 0 30px 10px;
+
+}
+
+.InteractionIcons{
+    margin: 0;
+}
+
+.InteractionIcons i{
+    color:#1d3d74;
+}
