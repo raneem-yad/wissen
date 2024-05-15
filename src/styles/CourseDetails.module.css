@@ -15,3 +15,25 @@
 .InteractionIcons i{
     color:#1d3d74;
 }
+
+.LearningGoals{
+    padding: 50px 10px;
+    margin-top: 20px;
+    margin-left:0 5px;
+    border-top: 1px solid #1d3d7470;
+    border-bottom: 1px solid #1d3d7470;
+    width: 100%;
+}
+
+.CustomCard{
+    border: 1px solid #1d3d7470;
+}
+
+.CustomCardHeader{
+    border-bottom: 1px solid #1d3d7470;
+    border-top: 1px solid #1d3d7470;
+}
+
+.ListGroupItem{
+    border-bottom: 1px solid #1d3d7470;
+}

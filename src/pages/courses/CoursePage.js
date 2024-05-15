@@ -33,7 +33,7 @@ function CoursePage() {
   return (
     <Container>
       <Row className={`h-100 ${styles.CourseTopSection}`}>
-        <CourseDetails {...course.results[0]} coursePage />
+        <CourseDetails {...course.results[0]} setCourses = {setCourse} coursePage  />
       </Row>
       <Row>
         <Col className="py-2 p-0 p-lg-2" lg={8}>

@@ -1,9 +1,14 @@
-import React from "react";
-import { Card, Col, ListGroup, Row } from "react-bootstrap";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Card, Col, ListGroup, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+import {useCurrentUser} from "../../contexts/CurrentUserContext"
 import StarRating from "../../components/StarRating";
 import styles from "../../styles/CourseDetails.module.css";
-
+import { Link } from "react-router-dom";
+import Avatar from "../../components/Avatar";
 const CourseDetails = (props) => {
+  const [videos, setVideos] = useState([]);
+  
   const {
     id,
     course_name,
@@ -15,6 +20,7 @@ const CourseDetails = (props) => {
     course_requirements,
     learning_goals,
     tags_details,
+    tags, 
     students,
     students_count,
     student_id,
@@ -30,7 +36,24 @@ const CourseDetails = (props) => {
     teacher_image,
     posted_date,
     updated_date,
+    coursePage,
   } = props;
+
+  useEffect(() => {
+    axios
+    .get(`/courses/${id}/videos/`)
+    .then((response) => {
+      setVideos(response.data);
+    })
+    .catch((error) => {
+      console.error("Error fetching course vidoes:", error);
+    });
+
+  }, [id]);
+
+  
+  const currentUser = useCurrentUser();
+  const is_owner = currentUser?.username === teacher
   const createMarkup = (htmlString) => {
     return { __html: htmlString };
   };
@@ -38,21 +61,42 @@ const CourseDetails = (props) => {
     <>
       {/* Top Section of the Course Details  */}
       <Col className={`py-2 p-3 p-lg-2 ${styles.Info}`} lg={7}>
-        {course_name && <h1>{course_name}</h1>}
+        {course_name && <h1>{course_name} {is_owner && coursePage && "..."}</h1>}
         {description && <p> {description}</p>}
         {/* staticts part  */}
         
           {/* rating */}
-          <StarRating
-            to_rate={true}
-            rating_value={rating_value}
-            rating_count={rating_count}/>
+          {is_owner ? (
+  <OverlayTrigger placement="top" overlay={<Tooltip>You can't rate your own Course</Tooltip>}>
+    <span>
+    <StarRating
+    to_rate={false}
+    rating_value={rating_value}
+    rating_count={rating_count}
+  />
+    </span>
+  </OverlayTrigger>
+) : currentUser ? (
+  <StarRating
+    to_rate={true}
+    rating_value={rating_value}
+    rating_count={rating_count}
+  />
+) : (
+  <StarRating
+    to_rate={false}
+    rating_value={rating_value}
+    rating_count={rating_count}
+  />
+)}
      
         {/* instructor and data about it */}
         {teacher && (
           <p>
             <strong>Created By: </strong>
-            {teacher}
+            <Link to={`profiles/${teacher_id}`}>
+              <Avatar src={teacher_image} height={30}/> {teacher}
+            </Link>
           </p>
         )}
         {updated_date && (
@@ -64,17 +108,17 @@ const CourseDetails = (props) => {
         {tags_details && (
           <p>
             <strong>Tags: </strong>
-            {tags_details.map((item, index) => " #"+item )}
+            {tags_details.map((item, index) => <Link to={`tags/${tags[index]}`}> #{item}</Link> )}
           </p>
         )}
       </Col>
       <Col lg={5} className="p-2">
-        <Card >
+        <Card className={styles.CustomCard}>
           <Card.Img variant="top" src={image} />
           
-          <Card.Header className="text-center"><h2>Enroll</h2></Card.Header>
+          <Card.Header className={`text-center ${styles.CustomCardHeader}`}><h2>Enroll</h2></Card.Header>
             <ListGroup variant="flush">
-              <ListGroup.Item >
+              <ListGroup.Item  className={styles.ListGroupItem}>
                 {/* share icon */}
                 <p className={`text-center d-flex flex-row justify-content-between  ${styles.InteractionIcons}`}>
                 <i className="fa-regular fa-share-from-square"></i>
@@ -97,6 +141,31 @@ const CourseDetails = (props) => {
          
         </Card>
       </Col>
+
+      {/* learning goals section  */}
+      
+      <Row className={styles.LearningGoals}>
+        <Col>
+        <h2 className="d-block">Learning Goals </h2>
+        <div dangerouslySetInnerHTML={createMarkup(learning_goals)}></div>
+        </Col>
+      </Row>
+
+      {/* Viedo Content */}
+      <Row className="w-100 p-2">
+                <Col >
+                <h2 className="my-4">Course Content</h2>
+            <ListGroup variant="flush" >
+              
+              {videos.map((video)=>{
+                return <ListGroup.Item key={video.id} action onClick={()=>{}} className=" d-flex flex-row justify-content-between align-items-center">
+                <span><i className="fa-regular fa-file-video"></i> {video.title}</span> 
+                <span>{video.duration}s</span>
+                </ListGroup.Item>
+              })}
+
+         </ListGroup></Col>
+      </Row>
     </>
   );
 };
