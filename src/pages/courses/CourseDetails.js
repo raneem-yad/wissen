@@ -191,13 +191,13 @@ const CourseDetails = (props) => {
                 className={`text-center d-flex flex-row justify-content-between  ${styles.InteractionIcons}`}
               >
                 <i className="fa-regular fa-share-from-square"></i>
-                {3 > 0 && (
+                {comments_count > 0 && (
                   <p className="d-inline-block mb-0">
                     <i className="fa-regular fa-comment"></i> {comments_count}{" "}
                     reviewer
                   </p>
                 )}
-                {3 > 0 && (
+                {students_count > 0 && (
                   <p className="d-inline-block mb-0">
                     <i className="fa-solid fa-graduation-cap"></i> {students_count}{" "}
                     Learner

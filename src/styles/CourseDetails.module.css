@@ -27,6 +27,7 @@
 
 .CustomCard{
     border: 1px solid #1d3d7470;
+    box-shadow: 1px 1px 7px 1px #02358266;
 }
 
 .CustomCardHeader{
@@ -34,6 +35,11 @@
     border-top: 1px solid #1d3d7470;
 }
 
+.CustomCardFooter{
+    background-color: rgb(29 61 116);
+}
+
 .ListGroupItem{
     border-bottom: 1px solid #1d3d7470;
 }
+
