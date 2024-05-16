@@ -2,6 +2,7 @@ import React from 'react'
 import { Container } from 'react-bootstrap'
 import CourseCardFullDetails from '../components/CourseCardFullDetails'
 import HomeHero from '../components/HomeHero'
+import CourseByCatgories from './courses/CourseByCatgories'
 import CoursesTopThree from './courses/CoursesTopThree'
 
 const Home = () => {
@@ -9,11 +10,14 @@ const Home = () => {
     <>
     {/* slider */}
     <HomeHero/>
-     {/* top three courses  */}
+     
     <Container>
+      {/* top three courses  */}
       <CoursesTopThree/>
+       {/* tag courses  */}
+      <CourseByCatgories/>
     </Container>
-     {/* tag courses  */}
+    
 
      {/* top instructors */}
     </>

@@ -40,7 +40,7 @@ function CourseCardFullDetails(props) {
       } = props;
 
   return (
-    <Card className={`${styles.CustomCard} my-3`} style={{ width: '20rem' }}>
+    <Card className={`${styles.CustomCard} my-3 mx-2`} style={{ width: '20rem' }}>
           <Card.Img variant="top" src={image} />
           <Card.Body>
         <Card.Title><h2>{course_name}</h2></Card.Title>
