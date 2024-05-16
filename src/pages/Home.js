@@ -4,6 +4,7 @@ import CourseCardFullDetails from '../components/CourseCardFullDetails'
 import HomeHero from '../components/HomeHero'
 import CourseByCatgories from './courses/CourseByCatgories'
 import CoursesTopThree from './courses/CoursesTopThree'
+import InstructorTopSix from './instructors/InstructorTopSix'
 
 const Home = () => {
   return (
@@ -16,10 +17,12 @@ const Home = () => {
       <CoursesTopThree/>
        {/* tag courses  */}
       <CourseByCatgories/>
+      {/* top instructors */}
+      <InstructorTopSix/>
     </Container>
     
 
-     {/* top instructors */}
+     
     </>
   )
 }
