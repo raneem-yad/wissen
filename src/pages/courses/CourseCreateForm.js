@@ -81,6 +81,7 @@ function CourseCreateForm() {
   };
 
   const handleCategorySelect = (category) => {
+    console.log(`Selected category: ${category}`); // Debugging line
     setPostData({
       ...postData,
       selectedCategory: category,
@@ -204,11 +205,7 @@ function CourseCreateForm() {
       <Form.Group>
         {categories.length > 0 && (
           <DropdownButton
-            title={
-              selectedCategory === ""
-                ? "Select Category"
-                : categories.find((cat) => cat.id == selectedCategory)?.name
-            }
+            title={selectedCategory === "" ? "Select Category" : categories.find((cat) => cat.id == selectedCategory)?.name}
             onSelect={handleCategorySelect}
           >
             {categories.map((category) => (
@@ -303,7 +300,7 @@ function CourseCreateForm() {
   );
 
   return (
-   <div className={styles.TopMArgin}>
+   <div className={styles.TopMargin}>
      <Form onSubmit={handleSubmit}>
       {/* old style along side between each others */}
       {/* <Row>

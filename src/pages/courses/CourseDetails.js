@@ -10,10 +10,11 @@ import {
 } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/CourseDetails.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../../components/Avatar";
-import { axiosReq } from "../../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Rating } from "react-simple-star-rating";
+import { MoreDropdown } from "../../components/MoreDropdown";
 const CourseDetails = (props) => {
   const [videos, setVideos] = useState([]);
   const [rating, setRating] = useState(props.rating_value);
@@ -51,7 +52,9 @@ const CourseDetails = (props) => {
   } = props;
 
   useEffect(() => {
-    console.log(`from beginning rating_value is ${rating_value} and count ${rating_count}`)
+    console.log(
+      `from beginning rating_value is ${rating_value} and count ${rating_count}`
+    );
     axios
       .get(`/courses/${id}/videos/`)
       .then((response) => {
@@ -60,20 +63,23 @@ const CourseDetails = (props) => {
       .catch((error) => {
         console.error("Error fetching course vidoes:", error);
       });
-    
-      setRating(rating_value);
-      setRatingCount(rating_count);
+
+    setRating(rating_value);
+    setRatingCount(rating_count);
   }, [id]);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === teacher;
+  const navigate = useNavigate();
   const createMarkup = (htmlString) => {
     return { __html: htmlString };
   };
   const handleRating = async (newRating) => {
     try {
-      console.log(`data is id ${id} and rating ${newRating} and count ${ratingCount}`);
-      const response = await axiosReq.post('/rating/', {
+      console.log(
+        `data is id ${id} and rating ${newRating} and count ${ratingCount}`
+      );
+      const response = await axiosReq.post("/rating/", {
         course: id,
         rating: newRating,
       });
@@ -84,34 +90,62 @@ const CourseDetails = (props) => {
         // setCourses((prevCourses)=>{
         //   console.log(`prev course is ${prevCourses}`)
         //   return ({
-        //     ...prevCourses, 
+        //     ...prevCourses,
         //     results: prevCourses.results.map((course)=>{
         //       return course.id === id?
         //       {...course, rating_count: rating_count+1, rating_value : rating}:course
         //     })
         //   })
         // })
-        console.log("rating successfully with " + newRating + "and count " + ratingCount);
+        console.log(
+          "rating successfully with " + newRating + "and count " + ratingCount
+        );
 
         // Fetch updated course data
         const updatedCourseResponse = await axios.get(`/courses/${id}/`);
         const updatedCourseData = updatedCourseResponse.data;
 
-        console.log("after rating successfully with " + updatedCourseData.rating_value + "and count " + updatedCourseData.rating_count);
+        console.log(
+          "after rating successfully with " +
+            updatedCourseData.rating_value +
+            "and count " +
+            updatedCourseData.rating_count
+        );
         setRating(updatedCourseData.rating_value);
         setRatingCount(updatedCourseData.rating_count);
       }
     } catch (error) {
-      console.error('Error submitting rating:', error);
+      console.error("Error submitting rating:", error);
     }
   };
+
+  const handleEdit = () => {
+    navigate(`/courses/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      console.log(`I'm trying to delete it`)
+      await axiosRes.delete(`/courses/${id}/`);
+      navigate(-1);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       {/* Top Section of the Course Details  */}
       <Col className={`py-2 p-3 p-lg-2 ${styles.Info}`} lg={7}>
         {course_name && (
           <h1>
-            {course_name} {is_owner && coursePage && "..."}
+            {course_name}{" "}
+            {is_owner && coursePage && (
+              <MoreDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            )}
           </h1>
         )}
         {description && <p> {description}</p>}
@@ -124,32 +158,29 @@ const CourseDetails = (props) => {
             overlay={<Tooltip>You can't rate your own Course</Tooltip>}
           >
             <div>
-            <Rating
-        onClick={handleRating}
-        initialValue={rating}
-        readonly={true}
-       
-      />
+              <Rating
+                onClick={handleRating}
+                initialValue={rating}
+                readonly={true}
+              />
             </div>
           </OverlayTrigger>
         ) : currentUser ? (
           <Rating
-        onClick={handleRating}
-        initialValue={rating}
-        readonly={false}
-       
-      />
+            onClick={handleRating}
+            initialValue={rating}
+            readonly={false}
+          />
         ) : (
           <OverlayTrigger
             placement="top"
             overlay={<Tooltip>You have to login first</Tooltip>}
           >
             <Rating
-        onClick={handleRating}
-        initialValue={rating_value}
-        readonly={true}
-       
-      />
+              onClick={handleRating}
+              initialValue={rating_value}
+              readonly={true}
+            />
           </OverlayTrigger>
         )}
         {ratingCount && <p className="text-muted">Rated by {ratingCount}</p>}
@@ -172,7 +203,10 @@ const CourseDetails = (props) => {
           <p>
             <strong>Tags: </strong>
             {tags_details.map((item, index) => (
-              <Link to={`tags/${tags[index]}`} key={tags[index]}> <span >#{item}</span></Link>
+              <Link to={`tags/${tags[index]}`} key={tags[index]}>
+                {" "}
+                <span>#{item}</span>
+              </Link>
             ))}
           </p>
         )}
@@ -199,8 +233,8 @@ const CourseDetails = (props) => {
                 )}
                 {students_count > 0 && (
                   <p className="d-inline-block mb-0">
-                    <i className="fa-solid fa-graduation-cap"></i> {students_count}{" "}
-                    Learner
+                    <i className="fa-solid fa-graduation-cap"></i>{" "}
+                    {students_count} Learner
                   </p>
                 )}
                 {/* students */}
