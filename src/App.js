@@ -7,6 +7,7 @@ import { createContext } from 'react';
 import CourseCreateForm from './pages/courses/CourseCreateForm';
 import Home from './pages/Home';
 import CoursePage from './pages/courses/CoursePage';
+import CourseSearch from './pages/courses/CourseSearch';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -21,8 +22,9 @@ function App() {
           <Route  path="/signin" element={<SignInForm/>} />
           <Route  path="/signup" element={ <SignUpForm/>} />
           {/* courses links */}
+          <Route  path="/courses/" element={ <CourseSearch/>} />
           <Route  path="/courses/create" element={ <CourseCreateForm/>} />
-          <Route  path="/courses/:id" element={ <CoursePage/>} />
+          <Route  path="/courses/:id" element={ <CoursePage message ="No results found. Adjust the search keyword."/>} />
           <Route element={<p>Page not found!</p>} />
         </Routes>
       {/* </Container> */}

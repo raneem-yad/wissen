@@ -1,8 +1,65 @@
-.CourseTopSection{
+.CourseTopSection {
   margin-top: 75px;
 
 }
-.Container {
-    min-height: 343px;
-  }
 
+.Container {
+  min-height: 343px;
+}
+
+.SearchContainer {
+  margin-top: 80px;
+  width: 100%;
+}
+
+.SearchWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.SearchInput {
+  width: 100%;
+  border-radius: 20px;
+  color: #242a3d;
+  padding-left: 40px; /* Leave space for the icon */
+  margin-bottom: 16px;
+  margin-right: 0; /* Space between input and sorting options */
+}
+
+@media (min-width: 766px) {
+  .SearchInput {
+    margin-right: 16px;
+  }
+}
+
+.SearchIcon {
+  position: absolute;
+  left: 10px; /* Adjust as needed */
+  top: 35%;
+  transform: translateY(-50%);
+  font-size: 1.2rem;
+  color: #242a3d;
+}
+
+.SearchIcon:hover {
+  cursor: default;
+  color: #cfced3;
+}
+
+.SortingContainer {
+  display: flex;
+  align-items: center;
+}
+
+.SortLabel {
+  margin-right: 8px;
+  font-size: 1rem;
+  color: #242a3d;
+}
+
+.SortSelect {
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 1rem;
+  color: #242a3d;
+}

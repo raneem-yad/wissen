@@ -24,7 +24,7 @@ function InstructorCard(props) {
     updated_date ,
     } = props;
   return (
-    <Col lg={5} className={`${styles.InstructorCard}`}>
+    <Col lg={5} className={`${styles.InstructorCard} m-2`}>
         
         <Media className='p-2'>
         <Col>

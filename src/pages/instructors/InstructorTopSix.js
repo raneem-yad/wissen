@@ -23,7 +23,7 @@ function InstructorTopSix() {
   return (
     <Row className='mt-5 p-2'>
       <Col>
-      <h1> Top Rated Instructors </h1>
+      <h1 className='mb-4'> Top Rated Instructors </h1>
      <Row className='justify-content-between g-2'>
      {
         topInstrcutors.map((instrutor  )=> <InstructorCard key={instrutor.id} {...instrutor}/>)
