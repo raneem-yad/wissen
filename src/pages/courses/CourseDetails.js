@@ -172,7 +172,7 @@ const CourseDetails = (props) => {
           <p>
             <strong>Tags: </strong>
             {tags_details.map((item, index) => (
-              <Link to={`tags/${tags[index]}`}> #{item}</Link>
+              <Link to={`tags/${tags[index]}`} key={tags[index]}> <span >#{item}</span></Link>
             ))}
           </p>
         )}

@@ -36,7 +36,7 @@ function InstructorCard(props) {
         {expertise && 
         
         expertise.map((item, index) => (
-          <Link to={`expertise/${item.id}`}><Badge pill variant="warning"> #{item.name} </Badge>{' '}</Link>
+          <Link to={`expertise/${item.id}`} key={item.id} ><Badge pill variant="warning" > #{item.name} </Badge>{' '}</Link>
         )
      
     )}

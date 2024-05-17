@@ -46,13 +46,15 @@ function CourseCardFullDetails(props) {
               </Row>
         <Card.Text className='py-2'>
         
-        {tags_details && 
-        
-            tags_details.map((item, index) => (
-              <Link to={`tags/${tags[index]}`}><Badge pill variant="warning"> #{item} </Badge>{' '}</Link>
-            )
-         
-        )}
+        {tags_details &&
+  tags_details.map((item, index) => (
+    <Link to={`tags/${tags[index]}`} key={tags[index]}>
+      <Badge pill variant="warning">
+        #{item}
+      </Badge>{' '}
+    </Link>
+  ))
+}
         
        <br/>{summery}
         </Card.Text>

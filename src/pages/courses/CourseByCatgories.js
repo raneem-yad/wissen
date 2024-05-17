@@ -46,8 +46,8 @@ function CourseByCatgories() {
         {/* </div> */}
         {categories.map(category => (
         //   <div className="col" key={category.id}>
-            <h4>
-              <Badge variant="secondary" onClick={() => handleCategoryClick(category.id)} style={{ cursor: 'pointer' }}>
+            <h4 key={category.id}>
+              <Badge  variant="secondary" onClick={() => handleCategoryClick(category.id)} style={{ cursor: 'pointer' }}>
                 {category.name}
               </Badge>
             </h4>
