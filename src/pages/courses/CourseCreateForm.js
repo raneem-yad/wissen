@@ -13,12 +13,15 @@ import Asset from "../../components/Assets";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function CourseCreateForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const imageInput = useRef(null);
+
 
   const navigate= useNavigate();
   useEffect(() => {

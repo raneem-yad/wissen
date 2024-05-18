@@ -16,9 +16,11 @@ import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function SignInForm() {
   const setCurrentUser = useSetCurrentUser();
+  useRedirect('loggedIn')
 
   const [signInData, setSignInData] = useState({
     username: "",
@@ -42,7 +44,7 @@ function SignInForm() {
       console.log(` data is ${data.user}`);
       console.log(` data key is ${data.key}`);
       setCurrentUser(data.user);
-      navigate("/", { replace: true });
+      navigate(-1, { replace: true });
     } catch (err) {
       setErrors(err.response?.data);
       setLoading(false);
