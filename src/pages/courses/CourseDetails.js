@@ -15,10 +15,12 @@ import Avatar from "../../components/Avatar";
 import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Rating } from "react-simple-star-rating";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import ConfirmationModal from "../../components/ConfirmationModal";
 const CourseDetails = (props) => {
   const [videos, setVideos] = useState([]);
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
+  const [showModal, setShowModal] = useState(false);
 
   const {
     id,
@@ -123,7 +125,17 @@ const CourseDetails = (props) => {
     navigate(`/courses/${id}/edit`);
   };
 
-  const handleDelete = async () => {
+  const handleDelete = () => {
+    setShowModal(true);
+};
+
+const handleClose = () => {
+    setShowModal(false);
+};
+
+
+
+  const handleConfirm = async () => {
     try {
       console.log(`I'm trying to delete it`)
       await axiosRes.delete(`/courses/${id}/`);
@@ -135,6 +147,7 @@ const CourseDetails = (props) => {
 
   return (
     <>
+      
       {/* Top Section of the Course Details  */}
       <Col className={`py-2 p-3 p-lg-2 ${styles.Info}`} lg={7}>
         {course_name && (
@@ -316,6 +329,13 @@ const CourseDetails = (props) => {
           </ListGroup>
         </Col>
       </Row>
+      {/* confirmation modal  */}
+      <ConfirmationModal 
+                show={showModal} 
+                handleClose={handleClose} 
+                handleConfirm={handleConfirm} 
+                message="Are you sure you want to delete this course?" 
+            />
     </>
   );
 };

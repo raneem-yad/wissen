@@ -16,6 +16,7 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Asset from "../../components/Assets";
 import { axiosReq } from "../../api/axiosDefaults";
+import AlertMessage from "../../components/AlertMessage";
 
 function CourseEditForm() {
   const { id } = useParams();
@@ -37,6 +38,9 @@ function CourseEditForm() {
   const [errors, setErrors] = useState({});
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertVariant, setAlertVariant] = useState('danger');
 
   const {
     course_name,
@@ -175,6 +179,10 @@ function CourseEditForm() {
     } catch (err) {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        if (err.response?.data?.detail) {
+            setAlertMessage(err.response.data.detail);
+            setShowAlert(true);
+        }
       }
     }
   };
@@ -216,6 +224,15 @@ function CourseEditForm() {
 
   return (
     <div className={styles.TopMargin}>
+        <Container>
+            {showAlert && (
+                <AlertMessage 
+                    variant={alertVariant} 
+                    message={alertMessage} 
+                    onClose={() => setShowAlert(false)} 
+                />
+            )}
+        </Container>
       <Form onSubmit={handleSubmit} encType="multipart/form-data">
         <Row>
           <Container className={appStyles.Content}>
