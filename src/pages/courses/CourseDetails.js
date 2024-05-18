@@ -54,9 +54,6 @@ const CourseDetails = (props) => {
   } = props;
 
   useEffect(() => {
-    console.log(
-      `from beginning rating_value is ${rating_value} and count ${rating_count}`
-    );
     axios
       .get(`/courses/${id}/videos/`)
       .then((response) => {
@@ -87,18 +84,6 @@ const CourseDetails = (props) => {
       });
 
       if (response.status === 201) {
-        // setRating(newRating);
-        // setRatingCount(ratingCount+1);
-        // setCourses((prevCourses)=>{
-        //   console.log(`prev course is ${prevCourses}`)
-        //   return ({
-        //     ...prevCourses,
-        //     results: prevCourses.results.map((course)=>{
-        //       return course.id === id?
-        //       {...course, rating_count: rating_count+1, rating_value : rating}:course
-        //     })
-        //   })
-        // })
         console.log(
           "rating successfully with " + newRating + "and count " + ratingCount
         );
@@ -127,17 +112,15 @@ const CourseDetails = (props) => {
 
   const handleDelete = () => {
     setShowModal(true);
-};
+  };
 
-const handleClose = () => {
+  const handleClose = () => {
     setShowModal(false);
-};
-
-
+  };
 
   const handleConfirm = async () => {
     try {
-      console.log(`I'm trying to delete it`)
+      console.log(`I'm trying to delete it`);
       await axiosRes.delete(`/courses/${id}/`);
       navigate(-1);
     } catch (err) {
@@ -147,7 +130,6 @@ const handleClose = () => {
 
   return (
     <>
-      
       {/* Top Section of the Course Details  */}
       <Col className={`py-2 p-3 p-lg-2 ${styles.Info}`} lg={7}>
         {course_name && (
@@ -330,12 +312,12 @@ const handleClose = () => {
         </Col>
       </Row>
       {/* confirmation modal  */}
-      <ConfirmationModal 
-                show={showModal} 
-                handleClose={handleClose} 
-                handleConfirm={handleConfirm} 
-                message="Are you sure you want to delete this course?" 
-            />
+      <ConfirmationModal
+        show={showModal}
+        handleClose={handleClose}
+        handleConfirm={handleConfirm}
+        message="Are you sure you want to delete this course?"
+      />
     </>
   );
 };
