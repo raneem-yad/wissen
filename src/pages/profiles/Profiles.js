@@ -18,7 +18,7 @@ function Profiles() {
                 const endpoint = profileType === "learner" ? `/learners/${id}` : `/instructors/${id}`;
                 const { data } = await axiosReq.get(endpoint);
                 setProfile(data);
-                console.log(data);
+            
             } catch (err) {
                 console.log(err);
             }

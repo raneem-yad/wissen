@@ -4,12 +4,15 @@ import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { axiosReq } from "../../api/axiosDefaults";
 import Avatar from "../../components/Avatar";
+import CourseCardFullDetails from "../../components/CourseCardFullDetails";
 import CustomButton from "../../components/CustomButton";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/Profile.module.css";
 
 const InstructorProfile = (props) => {
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
+  const [instructorCourses, setInstructorCourses] = useState([]);
   const {
     id,
     owner,
@@ -29,17 +32,18 @@ const InstructorProfile = (props) => {
   } = props;
   const currentUser = useCurrentUser();
 
-  //   const [instructorCourses, setInstructorCourses] = useState(props.rating_count);
-  useEffect(() => {
-    // axios
-    //   .get(`/courses/${id}/videos/`)
-    //   .then((response) => {
-    //     setVideos(response.data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error fetching course vidoes:", error);
-    //   });
 
+  useEffect(() => {
+    const handleMount = async ()=>{
+
+        try {
+            const {data} = await axiosReq.get(`/courses/by_instructor/${id}`);
+            setInstructorCourses(data.results);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    handleMount();
     setRating(rating_value);
     setRatingCount(rating_count);
   }, [id, rating_value, rating_count]);
@@ -80,15 +84,16 @@ const InstructorProfile = (props) => {
     }
   };
   return (
-    <Container className="mt-5">
+    <Container className={`${styles.ProfileSection}`}>
+        {/* top section of the instructor profile  */}
       <Row className="align-items-center">
         {/* left side  {general Informations} */}
-        <Col md={6}>
+        <Col md={6} className="p-3">
           <h1>{owner}</h1>
           <h3>{job_title}</h3>
 
           {/* statistics */}
-          <Row className="align-items-center">
+          <Row className="align-items-center pl-3">
             <p>
               <strong>
                 <i className="fa-solid fa-graduation-cap"></i> Total Learners:{" "}
@@ -96,7 +101,7 @@ const InstructorProfile = (props) => {
               {learner_count}
             </p>
           </Row>
-          <Row>
+          <Row className="pl-3">
             <p>
               <strong>
                 <i className="fa-solid fa-chalkboard-user"></i>Total Courses:{" "}
@@ -105,7 +110,7 @@ const InstructorProfile = (props) => {
             </p>
           </Row>
 
-          <Row>
+          <Row className="pl-3">
             <p>
               <strong>
                 <i className="fa-regular fa-clock"></i> Joined Date:{" "}
@@ -113,7 +118,7 @@ const InstructorProfile = (props) => {
               {created_date}
             </p>
           </Row>
-          <Row>
+          <Row className="pl-3">
             {/* expertise */}
             {expertise?.length && (
               <p>
@@ -131,7 +136,7 @@ const InstructorProfile = (props) => {
               </p>
             )}
           </Row>
-          <Row>
+          <Row className="pl-3">
             {is_owner ? (
               <OverlayTrigger
                 placement="top"
@@ -171,7 +176,7 @@ const InstructorProfile = (props) => {
             )}
           </Row>
 
-          <Row>
+          <Row className="pl-3">
             <p>
               <strong>
                 <i className="fa-solid fa-user-tie"></i>
@@ -208,13 +213,21 @@ const InstructorProfile = (props) => {
             <Col>
               <i className="fa fa-edit" />
             </Col>
-            <Col>
-              {" "}
-              <i className="fa fa-trash-alt" />
-            </Col>
+            
           </Row>
         </Col>
       </Row>
+
+
+      {/* courses section in the instructor  */}
+      <hr/>
+      <h3>Instructor Courses ({instructorCourses.length})</h3>
+      <div className="row justify-content-between">
+        
+        { instructorCourses.map(course => (
+            <CourseCardFullDetails key={course.id} {...course}/>
+        ))}
+      </div>
     </Container>
   );
 };

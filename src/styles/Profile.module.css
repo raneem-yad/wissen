@@ -1,3 +1,6 @@
 .WordBreak{
     word-wrap: break-all;
 }
+.ProfileSection{
+    margin-top: 50px;
+}

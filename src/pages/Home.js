@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container } from 'react-bootstrap'
-import CourseCardFullDetails from '../components/CourseCardFullDetails'
 import HomeHero from '../components/HomeHero'
 import CourseByCatgories from './courses/CourseByCatgories'
 import CoursesTopThree from './courses/CoursesTopThree'
