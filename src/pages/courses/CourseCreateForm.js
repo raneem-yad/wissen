@@ -115,6 +115,16 @@ function CourseCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    // Validation for selectedCategory
+    if (!selectedCategory) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        selectedCategory: ["Category is required."]
+      }));
+      return; // Prevent form submission
+    }
+
     const tagsArray = selectedTags.map(tag => parseInt(tag));
     const formData = new FormData();
 
@@ -216,6 +226,11 @@ function CourseCreateForm() {
           </DropdownButton>
         )}
       </Form.Group>
+      {errors?.selectedCategory?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
       {/* <Form.Group>
         {tags.length > 0 && (
           <DropdownButton

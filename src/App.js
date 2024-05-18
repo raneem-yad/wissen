@@ -8,6 +8,7 @@ import CourseCreateForm from './pages/courses/CourseCreateForm';
 import Home from './pages/Home';
 import CoursePage from './pages/courses/CoursePage';
 import CourseSearch from './pages/courses/CourseSearch';
+import CourseEditForm from './pages/courses/CourseEditForm';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -25,6 +26,7 @@ function App() {
           <Route  path="/courses/" element={ <CourseSearch/>} />
           <Route  path="/courses/create" element={ <CourseCreateForm/>} />
           <Route  path="/courses/:id" element={ <CoursePage message ="No results found. Adjust the search keyword."/>} />
+          <Route  path="/courses/:id/edit" element={ <CourseEditForm/> } />
           <Route element={<p>Page not found!</p>} />
         </Routes>
       {/* </Container> */}
