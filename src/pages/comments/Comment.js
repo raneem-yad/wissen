@@ -7,9 +7,11 @@ import ConfirmationModal from "../../components/ConfirmationModal";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import { CurrentUserContext, useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/Comment.module.css";
+import CommentEditForm from "./CommentEditForm";
 
 const Comment = (props) => {
   const [showModal, setShowModal] = useState(false);
+  const [showEditForm, setShowEditForm] = useState(false);
     const currentUser = useCurrentUser();
   const { profile_id, profile_image, owner, updated_at, content, id, setCourses, setComments } = props;
   const is_owner = currentUser?.username === owner;
@@ -48,7 +50,7 @@ const Comment = (props) => {
   };
 
   return (
-    <div>
+    <>
       <hr />
       <Media>
         <Link to={`/profiles/${profile_id}`}>
@@ -57,10 +59,23 @@ const Comment = (props) => {
         <Media.Body className="align-self-center ml-2">
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
-          <p>{content}</p>
+          {showEditForm ? (
+            <CommentEditForm id={id}
+            profile_id={profile_id}
+            content={content}
+            profileImage={profile_image}
+            setComments={setComments}
+            setShowEditForm={setShowEditForm} />
+          ) : (
+            <p>{content}</p>
+          )}
         </Media.Body>
-        {is_owner &&  <MoreDropdown handleEdit={handleEdit}
-                handleDelete={handleDelete}/>}
+        {is_owner && !showEditForm && (
+          <MoreDropdown
+            handleEdit={() => setShowEditForm(true)}
+            handleDelete={handleDelete}
+          />
+        )}
       </Media>
       <ConfirmationModal
         show={showModal}
@@ -68,7 +83,7 @@ const Comment = (props) => {
         handleConfirm={handleConfirm}
         message="Are you sure you want to delete this Comment?"
       />
-    </div>
+    </>
   );
 };
 
