@@ -1,0 +1,17 @@
+.CustomButton {
+    min-width: 60px;
+    background-color: #FFA500;
+    border-color: #FFA500;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.CustomButton .icon {
+    margin-right: 8px;
+}
+
+.CustomButton:hover {
+    background-color: #FF8C00; 
+    border-color: #FF8C00;
+}

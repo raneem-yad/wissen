@@ -13,6 +13,7 @@ import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Asset from "../../components/Assets";
 
 function CoursePage() {
   const { id } = useParams();
@@ -80,7 +81,7 @@ function CoursePage() {
               <Comment
                 key={comment.id}
                 {...comment}
-                setPost={setPost}
+                setCourses={setCourse}
                 setComments={setComments}
               />
             ))}
