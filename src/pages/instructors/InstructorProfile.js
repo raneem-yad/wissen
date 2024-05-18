@@ -211,7 +211,7 @@ const InstructorProfile = (props) => {
           </Row>
           <Row className="m-3">
             <Col>
-              <i className="fa fa-edit" />
+              <i className={`fa fa-edit  ${styles.iHover}`} />
             </Col>
             
           </Row>

@@ -31,12 +31,10 @@ function NavBar() {
         <i className="fas fa-sign-out-alt"></i> Log out
       </NavLink>
       <NavLink
-        onClick={handleSignOut}
         to={`/profiles/${currentUser?.profile_id}`}
       >
         <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
-      {currentUser?.username}
     </>
   );
   const loggedOutIcons = (
