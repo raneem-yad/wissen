@@ -12,6 +12,7 @@ import CourseDetails from "./CourseDetails";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function CoursePage() {
   const { id } = useParams();
@@ -74,10 +75,20 @@ function CoursePage() {
           ) : null}
 
           {comments.results?.length ? (
-            comments.results.map((comment) => (
-              <Comment key={comment.id} {...comment} setCourses={setCourse}
-              setComments={setComments} />
-            ))
+            <InfiniteScroll
+            children={comments.results.map((comment) => (
+              <Comment
+                key={comment.id}
+                {...comment}
+                setPost={setPost}
+                setComments={setComments}
+              />
+            ))}
+            dataLength={comments.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!comments.next}
+            next={() => fetchMoreData(comments, setComments)}
+          />
           ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (
