@@ -190,7 +190,7 @@ const InstructorProfile = (props) => {
           md={6}
           className="d-flex flex-column align-items-center justify-content-center"
         >
-          <Link to={`profiles/${id}/1`}>
+          <Link to={`/profiles/${id}`}>
             <Avatar src={image} height={180} />
           </Link>
           <Row className="m-3">

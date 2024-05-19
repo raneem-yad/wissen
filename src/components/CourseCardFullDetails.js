@@ -20,7 +20,7 @@ function CourseCardFullDetails(props) {
     rating_count,
     image,
     teacher,
-    teacher_id,
+    teacher_profile_id,
     teacher_image,
     updated_date,
   } = props;
@@ -40,7 +40,7 @@ function CourseCardFullDetails(props) {
         >
           {/* instructor profile  */}
           <div>
-            <Link to={`profiles/${teacher_id}`}>
+            <Link to={`/profiles/${teacher_profile_id}`}>
               <Avatar src={teacher_image} height={35} /> {teacher}
             </Link>
           </div>

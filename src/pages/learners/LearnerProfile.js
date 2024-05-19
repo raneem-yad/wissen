@@ -4,6 +4,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from "../../styles/Profile.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
+import CourseCardFullDetails from '../../components/CourseCardFullDetails';
 
 const LearnerProfile = (props) =>  {
     const {
@@ -54,7 +55,7 @@ return (
           md={6}
           className="d-flex flex-column align-items-center justify-content-center"
         >
-          <Link to={`profiles/${id}`}>
+          <Link to={`/profiles/${id}`}>
             <Avatar src={image} height={180} />
           </Link>
           {is_owner && <Row className="m-3">

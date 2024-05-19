@@ -28,7 +28,7 @@ function InstructorCard(props) {
         
         <Media className='p-2'>
         <Col>
-        <Link to={`profiles/${id}`} >
+        <Link to={`/profiles/${id}`} >
         <Avatar src={image} height={64}  className=" align-self-center mr-3"/>
         </Link>
         <h5>{owner}</h5>

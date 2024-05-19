@@ -45,7 +45,7 @@ const CourseDetails = (props) => {
     image,
     teacher,
     is_course_owner,
-    teacher_id,
+    teacher_profile_id,
     teacher_image,
     posted_date,
     updated_date,
@@ -183,7 +183,7 @@ const CourseDetails = (props) => {
         {teacher && (
           <p>
             <strong>Created By: </strong>
-            <Link to={`profiles/${teacher_id}`}>
+            <Link to={`/profiles/${teacher_profile_id}`}>
               <Avatar src={teacher_image} height={30} /> {teacher}
             </Link>
           </p>
