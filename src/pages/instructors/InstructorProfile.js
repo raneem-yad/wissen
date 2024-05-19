@@ -3,6 +3,7 @@ import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { axiosReq } from "../../api/axiosDefaults";
+import defaultLogo from "../../assets/default_profile.jpg";
 import Avatar from "../../components/Avatar";
 import CourseCardFullDetails from "../../components/CourseCardFullDetails";
 import CustomButton from "../../components/CustomButton";
@@ -22,6 +23,7 @@ const InstructorProfile = (props) => {
     rating_count,
     course_count,
     learner_count,
+    profile_id,
     image,
     bio,
     website_link,
@@ -190,8 +192,8 @@ const InstructorProfile = (props) => {
           md={6}
           className="d-flex flex-column align-items-center justify-content-center"
         >
-          <Link to={`/profiles/${id}`}>
-            <Avatar src={image} height={180} />
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={image || defaultLogo} height={180} />
           </Link>
           <Row className="m-3">
             <Col>

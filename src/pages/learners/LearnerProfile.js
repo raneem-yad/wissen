@@ -3,6 +3,7 @@ import { Container ,Row , Col} from 'react-bootstrap';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from "../../styles/Profile.module.css";
 import { Link } from "react-router-dom";
+import defaultLogo from "../../assets/default_profile.jpg";
 import Avatar from "../../components/Avatar";
 import CourseCardFullDetails from '../../components/CourseCardFullDetails';
 
@@ -10,23 +11,25 @@ const LearnerProfile = (props) =>  {
     const {
         id ,
     owner ,
+    owner_username, 
     full_name ,
     bio ,
     image ,
+    profile_id,
     created_date ,
     updated_date,
     enrolled_courses_count ,
     enrolled_courses 
 } = props;
 const currentUser = useCurrentUser();
-const is_owner = currentUser.username === owner;
+const is_owner = currentUser.username === owner_username;
 return (
     <Container className={`${styles.ProfileSection}`}>
         {/* top section of the instructor profile  */}
       <Row className="align-items-center">
         {/* left side  {general Informations} */}
         <Col md={6} className="p-3">
-          <h1>{owner}</h1>
+          <h1>{owner_username}</h1>
 
           {/* statistics */}
         
@@ -41,22 +44,22 @@ return (
             </p>
           </Row>
          
-          <Row className="pl-3">
+          {bio && <Row className="pl-3">
             <p>
               <strong>
                 <i className="fa-solid fa-user-tie"></i>
               </strong>
               About Me : {bio}
             </p>
-          </Row>
+          </Row>}
         </Col>
         {/* right side {image - links} */}
         <Col
           md={6}
           className="d-flex flex-column align-items-center justify-content-center"
         >
-          <Link to={`/profiles/${id}`}>
-            <Avatar src={image} height={180} />
+          <Link to={`/profiles/${profile_id}`}>
+            <Avatar src={image || defaultLogo} height={180} />
           </Link>
           {is_owner && <Row className="m-3">
             <Col>
@@ -70,12 +73,12 @@ return (
 
       {/* courses section in the instructor  */}
       <hr/>
-      <h3>My Courses ({enrolled_courses_count})</h3>
+      <h3>My Learning ({enrolled_courses_count})</h3>
       <div className="row justify-content-between">
         
-        { enrolled_courses?.map(course => (
+        { enrolled_courses.length ? enrolled_courses.map(course => (
             <CourseCardFullDetails key={course.id} {...course}/>
-        ))}
+        )): <p className='p-3'>Enroll in Course to track your Progress here!</p>}
       </div>
     </Container>
   );

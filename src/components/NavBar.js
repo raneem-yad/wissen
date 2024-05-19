@@ -1,5 +1,6 @@
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/logo_with_title.png";
+import defaultLogo from "../assets/default_profile.jpg";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import {
@@ -33,7 +34,7 @@ function NavBar() {
       <NavLink
         to={`/profiles/${currentUser?.profile_id}`}
       >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+        <Avatar src={currentUser?.profile_image || defaultLogo} text="Profile" height={40} />
       </NavLink>
     </>
   );
