@@ -12,6 +12,7 @@ import CourseEditForm from './pages/courses/CourseEditForm';
 import CoursesByTags from './pages/courses/CoursesByTags';
 import Profiles from './pages/profiles/Profiles';
 import InstructorEditProfile from './pages/instructors/InstructorEditProfile';
+import LearnerEditProfile from './pages/profiles/LearnerEditProfile';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -33,6 +34,7 @@ function App() {
           <Route  path="/tags/:id" element={ <CoursesByTags/> } />
           <Route  path="/profiles/:id" element={ <Profiles/> } />
           <Route  path="/instructor/:id/edit" element={ <InstructorEditProfile/> } />
+          <Route  path="/learner/:id/edit" element={ <LearnerEditProfile/> } />
           <Route element={<p>Page not found!</p>} />
         </Routes>
       {/* </Container> */}

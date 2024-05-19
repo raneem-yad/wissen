@@ -16,16 +16,13 @@ import {
   Alert,
 } from "react-bootstrap";
 
-function InstructorEditProfile() {
+function LearnerEditProfile() {
   const { id } = useParams();
   const imageInput = useRef(null);
   const [loading, setLoading] = useState(true);
   const [showAlert, setShowAlert] = useState(false);
   const [formData, setFormData] = useState({
-    job_title: "",
     bio: "",
-    website_link: "",
-    linkedin_link: "",
     image: "",
   });
   const [imageFile, setImageFile] = useState(null);
@@ -33,7 +30,7 @@ function InstructorEditProfile() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/instructors/${id}`);
+        const { data } = await axiosReq.get(`/learners/${id}`);
         setFormData(data);
         setLoading(false);
       } catch (error) {
@@ -65,11 +62,8 @@ function InstructorEditProfile() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const submissionData = new FormData();
-    submissionData.append("job_title", formData.job_title);
     submissionData.append("bio", formData.bio);
-    submissionData.append("website_link", formData.website_link);
-    submissionData.append("linkedin_link", formData.linkedin_link);
-
+    
     if (imageFile) {
       submissionData.append("image", imageFile);
     }
@@ -95,20 +89,6 @@ function InstructorEditProfile() {
         <Container>
           <h2 className="mt-5">Edit Your Profile</h2>
           <Form noValidate onSubmit={handleSubmit} encType="multipart/form-data">
-            <Form.Group controlId="jobTitle">
-              <Form.Label>Job Title</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter job title"
-                name="job_title"
-                value={formData.job_title}
-                onChange={handleChange}
-                required
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a job title.
-              </Form.Control.Feedback>
-              </Form.Group>
               <Row className="mt-3">
                 <Col lg={6}>
                   <Form.Group controlId="websiteLink">
@@ -226,4 +206,4 @@ function InstructorEditProfile() {
   );
 }
 
-export default InstructorEditProfile;
+export default LearnerEditProfile;

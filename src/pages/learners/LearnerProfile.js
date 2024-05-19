@@ -63,7 +63,9 @@ return (
           </Link>
           {is_owner && <Row className="m-3">
             <Col>
+            <Link to={`/learner/${id}/edit`}>
               <i className={`fa fa-edit  ${styles.iHover}`} />
+              </Link>
             </Col>
             
           </Row>}
