@@ -28,11 +28,11 @@ const InstructorProfile = (props) => {
     bio,
     website_link,
     linkedin_link,
-    is_owner,
     created_date,
     updated_date,
   } = props;
   const currentUser = useCurrentUser();
+  const is_owner = currentUser.username === owner
   
 
   useEffect(() => {
@@ -214,7 +214,7 @@ const InstructorProfile = (props) => {
           
           {is_owner && <Row className="m-3">
             <Col>
-              <i className={`fa fa-edit  ${styles.iHover}`} />
+              <Link to={`/instructor/${id}/edit`}><i className={`fa fa-edit  ${styles.iHover}`} /></Link>
             </Col>
             
           </Row>}

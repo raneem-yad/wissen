@@ -10,10 +10,10 @@ import {
   Alert,
   Container,
 } from "react-bootstrap";
-import Upload from "../../assets/upload.png";
 import styles from "../../styles/CourseCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import Upload from "../../assets/upload.png";
 import Asset from "../../components/Assets";
 import { axiosReq } from "../../api/axiosDefaults";
 import AlertMessage from "../../components/AlertMessage";
