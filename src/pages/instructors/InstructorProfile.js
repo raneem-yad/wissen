@@ -31,7 +31,7 @@ const InstructorProfile = (props) => {
     updated_date,
   } = props;
   const currentUser = useCurrentUser();
-
+  
 
   useEffect(() => {
     const handleMount = async ()=>{
@@ -190,7 +190,7 @@ const InstructorProfile = (props) => {
           md={6}
           className="d-flex flex-column align-items-center justify-content-center"
         >
-          <Link to={`profiles/${id}`}>
+          <Link to={`profiles/${id}/1`}>
             <Avatar src={image} height={180} />
           </Link>
           <Row className="m-3">
@@ -209,12 +209,13 @@ const InstructorProfile = (props) => {
               />
             </Col>
           </Row>
-          <Row className="m-3">
+          
+          {is_owner && <Row className="m-3">
             <Col>
               <i className={`fa fa-edit  ${styles.iHover}`} />
             </Col>
             
-          </Row>
+          </Row>}
         </Col>
       </Row>
 
