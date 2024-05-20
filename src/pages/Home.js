@@ -18,7 +18,7 @@ const Footer = () => {
             <img src={logo} alt="Logo" className={styles.Logo} />
           </Col>
           <Col xs={12} md={6} className="text-center text-md-right">
-            <p className="mb-0">&copy; {new Date().getFullYear()} Your Company Name. All Rights Reserved.</p>
+            <p className="mb-0">&copy; {new Date().getFullYear()} Wissen. All Rights Reserved.</p>
           </Col>
         </Row>
       </Container>

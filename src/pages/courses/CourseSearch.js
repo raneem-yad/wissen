@@ -4,7 +4,7 @@ import CourseCardFullDetails from "../../components/CourseCardFullDetails";
 import NoResults from "../../assets/no-results.png";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/CourseCreateEditForm.module.css";
-import { Container, Form, Row } from "react-bootstrap";
+import { Col, Container, Form, Row } from "react-bootstrap";
 import Asset from "../../components/Assets";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
@@ -41,7 +41,7 @@ function CourseSearch(message, filter = "") {
     setHasLoad(false);
     const timer = setTimeout(() => {
       fetchCourses();
-    }, 1000);
+    }, 500);
     return () => {
       clearTimeout(timer);
     };
@@ -54,11 +54,11 @@ function CourseSearch(message, filter = "") {
   return (
     <Container>
       {/* searching Part  */}
-      <div
-        className={`p-3 d-flex flex-column flex-lg-row align-items-lg-center ${styles.SearchContainer}`}
+      <Row
+        className={`p-3 justify-content-center ${styles.SearchContainer}`}
       >
-        <div
-          className={`d-flex align-items-center mb-3 mb-lg-0 ${styles.SearchWrapper}`}
+        <Col
+          
         >
           <i className={`fas fa-search ${styles.SearchIcon}`} />
           <Form
@@ -73,11 +73,11 @@ function CourseSearch(message, filter = "") {
               placeholder="Search Courses"
             />
           </Form>
-        </div>
-        <div className={`d-flex align-items-center ${styles.SortingContainer}`}>
-          <label htmlFor="sortOptions" className={styles.SortLabel}>
+        </Col>
+        <Col >
+          {/* <label htmlFor="sortOptions" className={styles.SortLabel}>
             Sort by:
-          </label>
+          </label> */}
           <select
             id="sortOptions"
             className={styles.SortSelect}
@@ -89,8 +89,8 @@ function CourseSearch(message, filter = "") {
             <option value="date_asc">Posted Date Ascending</option>
             <option value="date_desc">Posted Date Descending</option>
           </select>
-        </div>
-      </div>
+        </Col>
+      </Row>
 
       {/* render all the courses  */}
 
@@ -98,6 +98,7 @@ function CourseSearch(message, filter = "") {
         <>
         <Row className="jusyify-content-center">
           {courses.results.length ? (
+            <Col>
             <InfiniteScroll className="row jusyify-content-center"
               children={courses.results.map((course) => (
                 
@@ -113,11 +114,11 @@ function CourseSearch(message, filter = "") {
               loader={<Asset spinner />}
               hasMore={!!courses.next}
               next={() => fetchMoreData(courses, setCourses)}
-            />
+            /></Col>
           ) : (
             // no results
             <>
-              <Container className={appStyles.Content}>
+              <Container className={`${appStyles.Content} m-2`}>
                 <Asset src={NoResults} message="No courses found."></Asset>
               </Container>
             </>

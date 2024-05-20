@@ -24,9 +24,9 @@
   width: 100%;
   border-radius: 20px;
   color: #242a3d;
-  padding-left: 40px; /* Leave space for the icon */
+  padding-left: 40px;
   margin-bottom: 16px;
-  margin-right: 0; /* Space between input and sorting options */
+  margin-right: 0; 
 }
 
 @media (min-width: 766px) {
@@ -37,7 +37,7 @@
 
 .SearchIcon {
   position: absolute;
-  left: 10px; /* Adjust as needed */
+  left: 20px;
   top: 35%;
   transform: translateY(-50%);
   font-size: 1.2rem;
