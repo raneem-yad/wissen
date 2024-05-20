@@ -1,0 +1,16 @@
+.Slider {
+    min-height: 600px;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black with 50% opacity */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.captionText {
+    color: white;
+    /* Ensure the text is white for contrast */
+    text-align: center;
+}
