@@ -5,17 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="back in commits to installing phase">
-      <change afterPath="$PROJECT_DIR$/TESTING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/git-board/Screenshot 2024-05-20 at 10.09.47.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/github-board.png/Screenshot 2024-05-20 at 10.10.40.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/color-schema.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/github-board.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/preview.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/user-stories.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomeHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeHero.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/instructors/InstructorEditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/instructors/InstructorEditProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/NavBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/courses/CourseCreateForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/courses/CourseCreateForm.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

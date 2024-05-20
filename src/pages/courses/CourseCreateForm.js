@@ -317,9 +317,10 @@ function CourseCreateForm() {
     </div>
   );
 
+  // check why the course not has been created ?
   return (
    <div className={styles.TopMargin}>
-     <Form onSubmit={handleSubmit}>
+     <Form onSubmit={handleSubmit} encType="multipart/form-data">
       {/* old style along side between each others */}
       {/* <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>

@@ -27,16 +27,24 @@ function NavBar() {
       console.log(err);
     }
   };
-
   const loggedInIcons = (
     <>
+      {currentUser?.profile_type === "instructor" ? (
+        <NavLink to="/courses/create">
+          <i className="fa-solid fa-square-plus"></i>Add Course
+        </NavLink>
+      ) : (
+        <></>
+      )}
       <NavLink onClick={handleSignOut} to="/">
         <i className="fas fa-sign-out-alt"></i> Log out
       </NavLink>
-      <NavLink
-        to={`/profiles/${currentUser?.profile_id}`}
-      >
-        <Avatar src={currentUser?.profile_image || defaultLogo} text="Profile" height={40} />
+      <NavLink to={`/profiles/${currentUser?.profile_id}`}>
+        <Avatar
+          src={currentUser?.profile_image || defaultLogo}
+          text="Profile"
+          height={40}
+        />
       </NavLink>
     </>
   );
@@ -80,7 +88,8 @@ function NavBar() {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
-            <NavLink to="/"
+            <NavLink
+              to="/"
               // exact
               // className={styles.NavLink}
               className={({ isActive, isPending }) =>
@@ -89,7 +98,8 @@ function NavBar() {
             >
               <i className="fas fa-home"></i>Home
             </NavLink>
-            <NavLink to="/courses"
+            <NavLink
+              to="/courses"
               // exact
               // className={styles.NavLink}
               className={({ isActive, isPending }) =>

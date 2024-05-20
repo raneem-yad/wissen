@@ -1,29 +1,28 @@
-import React from 'react'
-import { Container } from 'react-bootstrap'
-import HomeHero from '../components/HomeHero'
-import CourseByCatgories from './courses/CourseByCatgories'
-import CoursesTopThree from './courses/CoursesTopThree'
-import InstructorTopSix from './instructors/InstructorTopSix'
+import React from "react";
+import { Container } from "react-bootstrap";
+import HomeHero from "../components/HomeHero";
+import CourseByCatgories from "./courses/CourseByCatgories";
+import CoursesTopThree from "./courses/CoursesTopThree";
+import InstructorTopSix from "./instructors/InstructorTopSix";
 
 const Home = () => {
   return (
     <>
-    {/* slider */}
-    <HomeHero/>
-     
-    <Container>
+      {/* slider */}
+      <HomeHero />
+
       {/* top three courses  */}
-      <CoursesTopThree/>
-       {/* tag courses  */}
-      <CourseByCatgories/>
+      <Container>
+        <CoursesTopThree />
+      </Container>
+      {/* tag courses  */}
+      <CourseByCatgories />
       {/* top instructors */}
-      <InstructorTopSix/>
-    </Container>
-    
-
-     
+      <Container>
+        <InstructorTopSix />
+      </Container>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
