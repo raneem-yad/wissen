@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
+import SignUp from "../../assets/auth/signup.png";
 
 import {
   Form,
@@ -62,8 +63,8 @@ const SignUpForm = () => {
   };
 
   return (
-    <Row className={styles.Row}>
-      <Col className="my-auto py-2 p-md-2" md={6}>
+    <Row className={`${styles.Row} justify-content-center mt-5`}>
+      <Col className="my-auto py-2 p-md-2" md={5}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>sign up</h1>
 
@@ -183,12 +184,12 @@ const SignUpForm = () => {
         </Container>
       </Col>
       <Col
-        md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
+        md={5}
+        className={`my-auto d-none d-md-block p-2`}
       >
         <Image
           className={`${appStyles.FillerImage}`}
-          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
+          src={SignUp}
         />
       </Col>
     </Row>
