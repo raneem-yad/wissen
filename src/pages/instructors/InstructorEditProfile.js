@@ -80,7 +80,7 @@ function InstructorEditProfile() {
     }
 
     try {
-      await axiosReq.put(`/instructors/${id}`, submissionData);
+      await axiosReq.put(`/instructors/${id}/`, submissionData);
       setShowAlert(true);
     } catch (error) {
       console.error("Error:", error);

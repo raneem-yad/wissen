@@ -5,16 +5,10 @@ while empowering instructors to share their expertise and engage with
 students globally. With intuitive navigation, personalized recommendations,
 and interactive features, Wissen offers a dynamic learning experience 
 tailored to individual needs and preferences.
+![wissen](/readme/preview.png)
+[Live Website](https://wissen-c163302e84c1.herokuapp.com/)
 
-[Live Website here]()
-
-## Features
-Comprehensive Course Library: Explore a vast collection of courses covering topics such as programming, design, business, humanities, and more.
-Expert Instructors: Learn from industry experts, academics, and professionals who bring real-world experience and insights to their courses.
-Interactive Learning Experience: Engage with course materials through videos, quizzes, assignments, and interactive discussions.
-Flexible Learning Options: Study at your own pace, anytime, anywhere.
-Personalized Recommendations: Receive course recommendations based on your interests and learning preferences.
-Certification and Recognition: Earn certificates of completion for successfully finishing courses.
+[BackEnd Website](https://wissen-api-61cc6e37e2b8.herokuapp.com/)
 
 ## The Strategy Plane
 
@@ -38,6 +32,8 @@ I chose to follow the MoSCoW Prioritization method for Wissen, identifying and l
 - **Should Haves**: the components that are valuable to the project but not absolutely 'vital' at the MVP stage. The 'Must Haves' must receive priority over the 'Should Haves'.
 - **Could Haves**: these are the features that are a 'bonus' to the project, it would be nice to have them in this phase, but only if the most important issues have been completed first and time allows.
 - **Won't Haves**: the features or components that either no longer fit the project's brief or are of very low priority for this release. 
+
+
 <hr>
 
 #### Sprints
@@ -59,7 +55,7 @@ Furthermore, breaking down user stories into individual tasks enabled me to trac
 | #5         | Implementing features           | 15.05  ->  18.05   |
 | #6         | General testing and final steps | 18.05  ->  22.05   |
 
-![user-story-example](readme/example-user-story.png)
+![user-story-example](readme/user-stories.png)
 <hr>
 
 #### User Stories
@@ -67,8 +63,7 @@ Furthermore, breaking down user stories into individual tasks enabled me to trac
 User stories and features recorded and managed on [GitHub Projects](https://github.com/users/raneem-yad/projects/5)
 
 
-![user-story-all](readme/user-stories-all.png)
-![user-story-open](readme/uset-stories-open.png)
+![user-story-all](/readme/github-board.png)
 <hr>
 
 #### Epics
@@ -104,7 +99,7 @@ Wireframes were created using [Balsamiq](https://balsamiq.com/) to plan content 
 ### Home Page 
 ![Home Page Wireframe](readme/HomePage.png)
 
-### Recipe Details
+### Course Details
 ![Recipe Details Wireframe](readme/recipe-details.png)
 
 ### Search Recipes
@@ -135,7 +130,7 @@ Finally, the footer of the website contains essential info about the website, an
 
 The design ethos of Wissen draws inspiration from renowned e-learning platforms like Coursera and Udemy, renowned for their user-friendly interfaces and comprehensive course offerings. The name "Wissen" originates from the German word for "Knowledge," reflecting our core mission to empower learners worldwide with accessible education. Our logo, ingeniously crafted, combines the initial letter of "Wissen" with an open book icon, symbolizing the gateway to unlimited knowledge that our platform offers.
 
-<img src="readme/logo.png" alt="Zaitouna logo" width="360" ><br>
+<img src="/src/assets/logo_with_title.png" alt="Zaitouna logo" width="200" ><br>
 
 
 ### Colour Scheme
@@ -152,7 +147,7 @@ They command attention while maintaining harmony with the overall color palette,
 **Warm Orange (#FFA500):** To infuse vibrancy and visual interest into design, by introducing an accent color that complements the primary blue hue. 
 which adds depth and dimension to the user experience, creating moments of delight and intrigue throughout the platform.
 
-![colours](readme/color-schema.png)  
+![colours](/readme/color-schema.png)  
 
 ### Font
 
@@ -163,6 +158,95 @@ Its clean and minimalist aesthetic exudes professionalism and clarity, guiding u
 
 **Roboto (Normal Texts):** Designed for optimal legibility and versatility, Roboto serves as the backbone of our content, ensuring a smooth and comfortable reading experience for learners of all backgrounds. Its balanced proportions, friendly curves, and crisp letterforms strike the perfect balance between professionalism and approachability, making it an ideal choice for conveying information effectively and engaging users with our course materials.
 
-  
-![fonts](readme/font-type.png)  
 
+
+
+## Testing
+
+Testing can be found in the [TESTING.md file](https://github.com/raneem-yad/wissen/blob/main/TESTING.md)
+<hr>
+<br>
+
+## Deployment
+## Heroku Deployment
+
+The site was deployed to Heroku. The steps to deploy are as follows:
+
+* Navigate to heroku and create an account
+* Click the new button in the top right corner
+* Select create new app
+* Enter app name
+* Select region and click create app
+* Click the resources tab and search for Heroku Postgres
+* Select hobby dev and continue
+
+* Click the deploy tab
+* Scroll down to Connect to GitHub and sign in / authorize when prompted
+* In the search box, find the repositoy you want to deploy and click connect
+* Scroll down to Manual deploy and choose the main branch
+* Click deploy
+<hr>
+<br>
+
+The live link can be found here: 
+[Live Site](https://wissen-c163302e84c1.herokuapp.com/)
+<br>
+
+## Version Control
+
+The site was created using the Visual Studio Code editor and pushed to github to the remote repository ‘wissen’.
+
+The following git commands were used throughout development to push code to the remote repo:
+
+```git add <file>``` - This command was used to add the file(s) to the staging area before they are committed.
+
+```git commit -m “commit message”``` - This command was used to commit changes to the local repository queue ready for the final step.
+
+```git push``` - This command was used to push all committed code to the remote repository on github.
+<hr>
+<br>
+
+### Run Locally
+
+Navigate to the GitHub Repository you want to clone to use locally:
+
+- Click on the code drop down button
+- Click on HTTPS
+- Copy the repository link to the clipboard
+- Open your IDE of choice (git must be installed for the next steps)
+- Type git clone copied-git-url into the IDE terminal
+
+The project will now have been cloned on your local machine for use.
+
+Install Dependencies:
+
+```npm install```
+
+Run Application:
+
+```npm start```
+<hr>
+<br>
+
+### Forking
+
+Most commonly, forks are used to either propose changes to someone else's project or to use someone else's project as a starting point for your own idea.
+
+- Navigate to the GitHub Repository you want to fork.
+
+- On the top right of the page under the header, click the fork button.
+
+- This will create a duplicate of the full project in your GitHub Repository.
+<hr>
+<br>
+
+## Credits
+
+1. Inegrating swagger tool to the Project Backend https://medium.com/@chodvadiyasaurabh/creating-interactive-api-documentation-with-swagger-ui-in-django-53fa9e9898dc
+
+### Content
+
+1. [Canva Website](https://www.canva.com/): is used for creating Website Logo by me.
+2. Sign up & Sign in images taken from [freepik](https://www.freepik.com/).
+3. Courses and Slider Images were taken from [pexel](https://www.pexels.com/).
+4. 

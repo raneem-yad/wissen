@@ -5,9 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="back in commits to installing phase">
+      <change afterPath="$PROJECT_DIR$/TESTING.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git-board/Screenshot 2024-05-20 at 10.09.47.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/github-board.png/Screenshot 2024-05-20 at 10.10.40.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/color-schema.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/github-board.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/preview.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/user-stories.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomeHero.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeHero.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/instructors/InstructorEditProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/instructors/InstructorEditProfile.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +53,14 @@
     &quot;last_opened_file_path&quot;: &quot;/Users/raneem/Desktop/projects/code-institute/portfolio-projects/wissen&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/readme" />
+      <recent name="$PROJECT_DIR$/github-board.png" />
+      <recent name="$PROJECT_DIR$/git-board" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
