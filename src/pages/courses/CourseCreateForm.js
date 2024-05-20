@@ -14,6 +14,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
+import AlertMessage from "../../components/AlertMessage";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function CourseCreateForm() {
   useRedirect("loggedOut");
@@ -21,6 +23,10 @@ function CourseCreateForm() {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const imageInput = useRef(null);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertVariant, setAlertVariant] = useState('danger');
+  const currentUser = useCurrentUser();
 
 
   const navigate= useNavigate();
@@ -33,6 +39,8 @@ function CourseCreateForm() {
       })
       .catch((error) => {
         console.error("Error fetching course categories:", error);
+        setAlertMessage(err.response.data.detail);
+            setShowAlert(true);
       });
 
     // Fetch tags from backend when the component mounts
@@ -118,6 +126,11 @@ function CourseCreateForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (currentUser.profile_type === "learner"){
+      setAlertMessage("Learner Couldn't Create a Course you must be a Instructor!");
+        setShowAlert(true);
+        return;
+    }
 
     // Validation for selectedCategory
     if (!selectedCategory) {
@@ -148,6 +161,8 @@ function CourseCreateForm() {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
+        setAlertMessage(err.response?.data.detail);
+        setShowAlert(true);
       }
     }
   };
@@ -234,24 +249,6 @@ function CourseCreateForm() {
                 {message}
               </Alert>
             ))}
-      {/* <Form.Group>
-        {tags.length > 0 && (
-          <DropdownButton
-            title={
-              selectedTag === ""
-                ? "Select Tag"
-                : tags.find((tag) => tag.id == selectedTag)?.name
-            }
-            onSelect={handleTagSelect}
-          >
-            {tags.map((tag) => (
-              <Dropdown.Item key={tag.id} eventKey={tag.id}>
-                {tag.name}
-              </Dropdown.Item>
-            ))}
-          </DropdownButton>
-        )}
-      </Form.Group> */}
 
       <Form.Group>
         <Form.Label>Tags:</Form.Label>
@@ -320,6 +317,15 @@ function CourseCreateForm() {
   // check why the course not has been created ?
   return (
    <div className={styles.TopMargin}>
+    <Container>
+    {showAlert && (
+                <AlertMessage
+                    variant={alertVariant} 
+                    message={alertMessage} 
+                    onClose={() => setShowAlert(false)} 
+                />
+            )}
+    </Container>
      <Form onSubmit={handleSubmit} encType="multipart/form-data">
       {/* old style along side between each others */}
       {/* <Row>

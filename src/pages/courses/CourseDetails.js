@@ -17,6 +17,7 @@ import { Rating } from "react-simple-star-rating";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import CourseShareModal from "../../components/CourseShare";
+import AlertMessage from "../../components/AlertMessage";
 
 const CourseDetails = (props) => {
   const [videos, setVideos] = useState([]);
@@ -24,6 +25,9 @@ const CourseDetails = (props) => {
   const [ratingCount, setRatingCount] = useState(props.rating_count);
   const [showModal, setShowModal] = useState(false);
   const [showShareButtonModal, setShowShareButtonModal] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+  const [alertVariant, setAlertVariant] = useState('danger');
 
   const {
     id,
@@ -107,6 +111,10 @@ const CourseDetails = (props) => {
       }
     } catch (error) {
       console.error("Error submitting rating:", error);
+      setAlertMessage(error.response?.data.detail);
+      setShowAlert(true);
+      setRating(rating_value);
+      setRatingCount(rating_count);
     }
   };
 
@@ -124,6 +132,8 @@ const CourseDetails = (props) => {
       navigate(-1);
     } catch (err) {
       console.log(err);
+      setAlertMessage("Error Deleting the course! Try again later!");
+            setShowAlert(true);
     }
   };
 
@@ -131,6 +141,13 @@ const CourseDetails = (props) => {
     <>
       {/* Top Section of the Course Details  */}
       <Col className={`py-2 p-3 p-lg-2 ${styles.Info}`} lg={7}>
+        {showAlert && (
+                <AlertMessage
+                    variant={alertVariant} 
+                    message={alertMessage} 
+                    onClose={() => setShowAlert(false)} 
+                />
+            )}
         {course_name && (
           <h1>
             {course_name}{" "}

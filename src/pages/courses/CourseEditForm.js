@@ -262,7 +262,7 @@ function CourseEditForm() {
                   title={
                     selectedCategory === ""
                       ? "Select Category"
-                      : categories.find((cat) => cat.id === selectedCategory)?.name
+                      : categories.find((cat) => cat.id == selectedCategory)?.name
                   }
                   onSelect={handleCategorySelect}
                 >
