@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-import Col from 'react-bootstrap/Col';
-import ListGroup from 'react-bootstrap/ListGroup';
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
-import Row from 'react-bootstrap/Row';
-import Tooltip from 'react-bootstrap/Tooltip';
-import Card from 'react-bootstrap/Card';
+import Col from "react-bootstrap/Col";
+import ListGroup from "react-bootstrap/ListGroup";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Row from "react-bootstrap/Row";
+import Tooltip from "react-bootstrap/Tooltip";
+import Card from "react-bootstrap/Card";
 
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/CourseDetails.module.css";
@@ -110,7 +110,7 @@ const CourseDetails = (props) => {
     }
   };
 
-  const handleEdit = () =>  navigate(`/courses/${id}/edit`);
+  const handleEdit = () => navigate(`/courses/${id}/edit`);
   const handleDelete = () => setShowModal(true);
   const handleClose = () => setShowModal(false);
 
@@ -216,30 +216,31 @@ const CourseDetails = (props) => {
             <ListGroup.Item className={styles.ListGroupItem}>
               {/* share icon */}
               <p
-                className={`text-center d-flex flex-row justify-content-between  ${styles.InteractionIcons}`}
+                className={`text-center d-flex flex-row justify-content-around  ${styles.InteractionIcons}`}
               >
-                <i onClick={handleShareButtonShow} className="fa-regular fa-share-from-square"></i>
+                <i
+                  onClick={handleShareButtonShow}
+                  className="fa-regular fa-share-from-square"
+                ></i>
                 <CourseShareModal
-        show={showShareButtonModal}
-        handleClose={handleShareButtonClose}
-        url={url}
-        title={course_name}
-        description={description}
-      />
-                {comments_count > 0 && (
-                  <p className="d-inline-block mb-0">
-                    <i className="fa-regular fa-comment"></i> {comments_count}{" "}
-                    reviewer
-                  </p>
-                )}
-                {students_count > 0 && (
-                  <p className="d-inline-block mb-0">
-                    <i className="fa-solid fa-graduation-cap"></i>{" "}
-                    {students_count} Learner
-                  </p>
-                )}
+                  show={showShareButtonModal}
+                  handleClose={handleShareButtonClose}
+                  url={url}
+                  title={course_name}
+                  description={description}
+                />
+
+                <p className="d-inline-block mb-0">
+                  <i className="fa-regular fa-comment"></i> {comments_count}{" "}
+                  reviewer
+                </p>
+
+                <p className="d-inline-block mb-0">
+                  <i className="fa-solid fa-graduation-cap"></i>{" "}
+                  {students_count} Learner
+                </p>
+
                 {/* students */}
-                &nbsp;&nbsp;&nbsp;
               </p>
             </ListGroup.Item>
             {course_requirements && (
@@ -265,58 +266,62 @@ const CourseDetails = (props) => {
       </Row>
 
       {/* Viedo Content */}
-      <Row className="w-100 p-2">
-        <Col>
-          <h2 className="my-4">Course Content</h2>
-          <ListGroup variant="flush">
-            {videos.map((video) => {
-              const videoItem = (
-                <ListGroup.Item
-                  key={video.id}
-                  action
-                  onClick={() => {}}
-                  className="d-flex flex-row justify-content-between align-items-center"
-                >
-                  <span>
-                    <i className="fa-regular fa-file-video"></i> {video.title}
-                  </span>
-                  <span>{video.duration}s</span>
-                </ListGroup.Item>
-              );
+      {videos.length && (
+        <Row className="w-100 p-2">
+          <Col>
+            <h2 className="my-4">Course Content</h2>
+            <ListGroup variant="flush">
+              {videos.map((video) => {
+                const videoItem = (
+                  <ListGroup.Item
+                    key={video.id}
+                    action
+                    onClick={() => {}}
+                    className="d-flex flex-row justify-content-between align-items-center"
+                  >
+                    <span>
+                      <i className="fa-regular fa-file-video"></i> {video.title}
+                    </span>
+                    <span>{video.duration}s</span>
+                  </ListGroup.Item>
+                );
 
-              if (is_learner_enrolled_in_course) {
-                return videoItem;
-              } else if (currentUser) {
-                return (
-                  <OverlayTrigger
-                    key={video.id}
-                    placement="top"
-                    overlay={
-                      <Tooltip>You aren't enrolled in this course yet</Tooltip>
-                    }
-                  >
-                    {videoItem}
-                  </OverlayTrigger>
-                );
-              } else {
-                return (
-                  <OverlayTrigger
-                    key={video.id}
-                    placement="top"
-                    overlay={
-                      <Tooltip>
-                        You have to create an account to see course content
-                      </Tooltip>
-                    }
-                  >
-                    {videoItem}
-                  </OverlayTrigger>
-                );
-              }
-            })}
-          </ListGroup>
-        </Col>
-      </Row>
+                if (is_learner_enrolled_in_course) {
+                  return videoItem;
+                } else if (currentUser) {
+                  return (
+                    <OverlayTrigger
+                      key={video.id}
+                      placement="top"
+                      overlay={
+                        <Tooltip>
+                          You aren't enrolled in this course yet
+                        </Tooltip>
+                      }
+                    >
+                      {videoItem}
+                    </OverlayTrigger>
+                  );
+                } else {
+                  return (
+                    <OverlayTrigger
+                      key={video.id}
+                      placement="top"
+                      overlay={
+                        <Tooltip>
+                          You have to create an account to see course content
+                        </Tooltip>
+                      }
+                    >
+                      {videoItem}
+                    </OverlayTrigger>
+                  );
+                }
+              })}
+            </ListGroup>
+          </Col>
+        </Row>
+      )}
       {/* confirmation modal  */}
       <ConfirmationModal
         show={showModal}
