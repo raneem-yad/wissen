@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Col,
-  ListGroup,
-  OverlayTrigger,
-  Row,
-  Tooltip,
-} from "react-bootstrap";
+
+import Col from 'react-bootstrap/Col';
+import ListGroup from 'react-bootstrap/ListGroup';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Row from 'react-bootstrap/Row';
+import Tooltip from 'react-bootstrap/Tooltip';
+import Card from 'react-bootstrap/Card';
+
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from "../../styles/CourseDetails.module.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -16,11 +16,14 @@ import { axiosReq, axiosRes } from "../../api/axiosDefaults";
 import { Rating } from "react-simple-star-rating";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import ConfirmationModal from "../../components/ConfirmationModal";
+import CourseShareModal from "../../components/CourseShare";
+
 const CourseDetails = (props) => {
   const [videos, setVideos] = useState([]);
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
   const [showModal, setShowModal] = useState(false);
+  const [showShareButtonModal, setShowShareButtonModal] = useState(false);
 
   const {
     id,
@@ -52,6 +55,7 @@ const CourseDetails = (props) => {
     coursePage,
     setCourses,
   } = props;
+  const url = window.location.href;
 
   useEffect(() => {
     axios
@@ -106,17 +110,12 @@ const CourseDetails = (props) => {
     }
   };
 
-  const handleEdit = () => {
-    navigate(`/courses/${id}/edit`);
-  };
+  const handleEdit = () =>  navigate(`/courses/${id}/edit`);
+  const handleDelete = () => setShowModal(true);
+  const handleClose = () => setShowModal(false);
 
-  const handleDelete = () => {
-    setShowModal(true);
-  };
-
-  const handleClose = () => {
-    setShowModal(false);
-  };
+  const handleShareButtonShow = () => setShowShareButtonModal(true);
+  const handleShareButtonClose = () => setShowShareButtonModal(false);
 
   const handleConfirm = async () => {
     try {
@@ -219,7 +218,14 @@ const CourseDetails = (props) => {
               <p
                 className={`text-center d-flex flex-row justify-content-between  ${styles.InteractionIcons}`}
               >
-                <i className="fa-regular fa-share-from-square"></i>
+                <i onClick={handleShareButtonShow} className="fa-regular fa-share-from-square"></i>
+                <CourseShareModal
+        show={showShareButtonModal}
+        handleClose={handleShareButtonClose}
+        url={url}
+        title={course_name}
+        description={description}
+      />
                 {comments_count > 0 && (
                   <p className="d-inline-block mb-0">
                     <i className="fa-regular fa-comment"></i> {comments_count}{" "}

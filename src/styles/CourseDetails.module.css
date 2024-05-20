@@ -1,45 +1,58 @@
 .Info h1 {
     font-size: 3.5rem;
-    padding: 30px  0;
+    padding: 30px 0;
 
 }
-.Info > p {
+
+.Info>p {
     margin: 20px 0 30px 10px;
 
 }
 
-.InteractionIcons{
+.InteractionIcons {
     margin: 0;
 }
 
-.InteractionIcons i{
-    color:#1d3d74;
+.InteractionIcons i {
+    color: #1d3d74;
 }
 
-.LearningGoals{
+.LearningGoals {
     padding: 50px 10px;
     margin-top: 20px;
-    margin-left:0 5px;
+    margin-left: 0 5px;
     border-top: 1px solid #1d3d7470;
     border-bottom: 1px solid #1d3d7470;
     width: 100%;
 }
 
-.CustomCard{
+.CustomCard {
     border: 1px solid #1d3d7470;
     box-shadow: 1px 1px 7px 1px #02358266;
 }
 
-.CustomCardHeader{
+.CustomCardHeader {
     border-bottom: 1px solid #1d3d7470;
     border-top: 1px solid #1d3d7470;
 }
 
-.CustomCardFooter{
+.CustomCardFooter {
     background-color: rgb(29 61 116);
 }
 
-.ListGroupItem{
+.ListGroupItem {
     border-bottom: 1px solid #1d3d7470;
 }
 
+.CourseShareButtons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.CourseShareButtons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
