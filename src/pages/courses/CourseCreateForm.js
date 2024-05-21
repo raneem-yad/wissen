@@ -92,7 +92,6 @@ function CourseCreateForm() {
   };
 
   const handleCategorySelect = (category) => {
-    console.log(`Selected category: ${category}`); // Debugging line
     setPostData({
       ...postData,
       selectedCategory: category,
@@ -158,7 +157,7 @@ function CourseCreateForm() {
       const { data } = await axiosReq.post("/courses/", formData);
       navigate(`/courses/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         setAlertMessage(err.response?.data.detail);

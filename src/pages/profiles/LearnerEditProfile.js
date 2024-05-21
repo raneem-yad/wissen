@@ -72,12 +72,6 @@ function LearnerEditProfile() {
     if (imageFile) {
       submissionData.append("image", imageFile);
     }
-
-    // Log FormData entries for debugging
-    for (let [key, value] of submissionData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     try {
       await axiosReq.put(`/learners/${id}`, submissionData);
       setShowAlert(true);

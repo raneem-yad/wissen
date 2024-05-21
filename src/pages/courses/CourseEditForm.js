@@ -82,7 +82,7 @@ function CourseEditForm() {
           image,
         });
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

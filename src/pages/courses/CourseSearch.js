@@ -34,7 +34,7 @@ function CourseSearch(message, filter = "") {
         setCourses(data);
         setHasLoad(true);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

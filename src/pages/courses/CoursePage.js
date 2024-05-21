@@ -30,9 +30,8 @@ function CoursePage() {
           axiosReq.get(`/courses/${id}`),
         ]);
         setCourse({ results: [course] });
-        console.log(course);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     axiosReq

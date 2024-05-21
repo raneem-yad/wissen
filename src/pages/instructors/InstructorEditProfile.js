@@ -73,11 +73,6 @@ function InstructorEditProfile() {
       submissionData.append("image", imageFile);
     }
 
-    // Log FormData entries for debugging
-    for (let [key, value] of submissionData.entries()) {
-      console.log(`${key}: ${value}`);
-    }
-
     try {
       await axiosReq.put(`/instructors/${id}/`, submissionData);
       setShowAlert(true);

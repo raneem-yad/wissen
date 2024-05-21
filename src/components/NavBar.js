@@ -24,7 +24,6 @@ function NavBar() {
       setCurrentUser(null);
       removeTokenTimestamp();
     } catch (err) {
-      console.log(err);
     }
   };
   const loggedInIcons = (

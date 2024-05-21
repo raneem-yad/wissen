@@ -17,7 +17,7 @@ function Profiles() {
       setProfile(data);
       setLoaded(true);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
   useEffect(() => {

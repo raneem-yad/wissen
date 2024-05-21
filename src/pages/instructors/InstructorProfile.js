@@ -21,6 +21,7 @@ const InstructorProfile = (props) => {
   const [ratingCount, setRatingCount] = useState(props.rating_count);
   const [instructorCourses, setInstructorCourses] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const {
     id,
     owner,
@@ -60,9 +61,6 @@ const InstructorProfile = (props) => {
   const handleRating = async (newRating) => {
     setLoading(true);
     try {
-      console.log(
-        `data is id ${id} and rating ${newRating} and count ${ratingCount}`
-      );
 
       const response = await axiosReq.post("/instructor-rating/", {
         teacher: id,
@@ -79,13 +77,6 @@ const InstructorProfile = (props) => {
           `/users/${props.user_id}/`
         );
         const updatedInstructorData = updatedInstructorResponse.data.profile;
-
-        console.log(
-          "after rating successfully with " +
-            updatedInstructorData.rating_value +
-            "and count " +
-            updatedInstructorData.rating_count
-        );
         setRating(updatedInstructorData.rating_value);
         setRatingCount(updatedInstructorData.rating_count);
         etAlertMessage(error.response?.data.detail);
@@ -95,9 +86,6 @@ const InstructorProfile = (props) => {
     } catch (error) {
       setLoading(false);
       console.error("Error submitting rating:", error);
-      setAlertMessage(error.response?.data.detail);
-      setShowAlert(error.response?true:false);
-      setAlertVariant("danger")
       setRating(rating_value);
       setRatingCount(rating_count);
     }

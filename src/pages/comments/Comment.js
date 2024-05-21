@@ -31,7 +31,6 @@ const Comment = (props) => {
 
   const handleConfirm = async () => {
     try {
-      console.log(`I'm trying to delete it`);
       await axiosRes.delete(`/comments/${id}/`);
       setCourses(prevCourse => ({
         results:[{
@@ -45,7 +44,7 @@ const Comment = (props) => {
       }));
 
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

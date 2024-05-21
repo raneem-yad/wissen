@@ -6,11 +6,6 @@ import InstructorCard from '../../components/InstructorCard';
 function InstructorTopSix() {
     const [topInstrcutors, setTopInstrcutors] = useState([]);
   useEffect(() => {
-    console.log(`getting top three instructors_top-instructors_list `)
-    
-
-
-
     axios
       .get(`/instructors/top-instructors/`)
       .then((response) => {

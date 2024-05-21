@@ -15,7 +15,6 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-// import axiosInstance from "../../api/axiosDefaults";
 import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
 
@@ -53,10 +52,8 @@ const SignUpForm = () => {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       setLoading(false); 
       navigate("/signin", { replace: true });
-      // redirect("/signin");
     } catch (err) {
-      console.log("errrror");
-      console.log(err)
+      // console.log(err)
       setErrors(err.response?.data);
       setLoading(false);
     }

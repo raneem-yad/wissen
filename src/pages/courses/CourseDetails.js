@@ -86,9 +86,6 @@ const CourseDetails = (props) => {
   const handleRating = async (newRating) => {
     setLoading(true);
     try {
-      console.log(
-        `data is id ${id} and rating ${newRating} and count ${ratingCount}`
-      );
       const response = await axiosReq.post("/rating/", {
         course: id,
         rating: newRating,
@@ -96,26 +93,16 @@ const CourseDetails = (props) => {
 
       if (response.status === 201) {
         setLoading(false);
-        console.log(
-          "rating successfully with " + newRating + "and count " + ratingCount
-        );
 
         // Fetch updated course data
         const updatedCourseResponse = await axios.get(`/courses/${id}/`);
         const updatedCourseData = updatedCourseResponse.data;
-
-        console.log(
-          "after rating successfully with " +
-            updatedCourseData.rating_value +
-            "and count " +
-            updatedCourseData.rating_count
-        );
         setRating(updatedCourseData.rating_value);
         setRatingCount(updatedCourseData.rating_count);
       }
     } catch (error) {
       setLoading(false);
-      console.error("Error submitting rating:", error);
+      // console.error("Error submitting rating:", error);
       setAlertMessage(error.response?.data.detail);
       setShowAlert(error.response?true:false);
       setAlertVariant("danger")
@@ -153,11 +140,10 @@ const CourseDetails = (props) => {
 
   const handleConfirm = async () => {
     try {
-      console.log(`I'm trying to delete it`);
       await axiosRes.delete(`/courses/${id}/`);
       navigate(-1);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       setAlertMessage("Error Deleting the course! Try again later!");
       setShowAlert(true);
       setAlertVariant("danger")
