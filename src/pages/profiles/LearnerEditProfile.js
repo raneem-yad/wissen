@@ -23,14 +23,17 @@ function LearnerEditProfile() {
   const [showAlert, setShowAlert] = useState(false);
   const [formData, setFormData] = useState({
     bio: "",
+    full_name:"",
     image: "",
+    owner:"",
+    owner_username:""
   });
   const [imageFile, setImageFile] = useState(null);
 
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/learners/${id}`);
+        const { data } = await axiosReq.get(`/learners/${id}/`);
         setFormData(data);
         setLoading(false);
       } catch (error) {
@@ -63,7 +66,9 @@ function LearnerEditProfile() {
     e.preventDefault();
     const submissionData = new FormData();
     submissionData.append("bio", formData.bio);
-    
+    submissionData.append("full_name", formData.full_name);
+    submissionData.append("owner", formData.owner);
+
     if (imageFile) {
       submissionData.append("image", imageFile);
     }
@@ -74,7 +79,7 @@ function LearnerEditProfile() {
     }
 
     try {
-      await axiosReq.put(`/instructors/${id}`, submissionData);
+      await axiosReq.put(`/learners/${id}`, submissionData);
       setShowAlert(true);
     } catch (error) {
       console.error("Error:", error);
@@ -83,125 +88,114 @@ function LearnerEditProfile() {
 
   return (
     <div className={styles.TopMargin}>
+      <Container>
+      {showAlert && (
+        <Alert
+          variant="success"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          Profile Updated successfully!
+        </Alert>
+      )}
+      </Container>
       {loading ? (
         <Asset spinner />
       ) : (
         <Container>
           <h2 className="mt-5">Edit Your Profile</h2>
-          <Form noValidate onSubmit={handleSubmit} encType="multipart/form-data">
-              <Row className="mt-3">
-                <Col lg={6}>
-                  <Form.Group controlId="websiteLink">
-                    <Form.Label>Website Link</Form.Label>
-                    <Form.Control
-                      type="url"
-                      placeholder="Enter website link"
-                      name="website_link"
-                      value={formData.website_link}
-                      onChange={handleChange}
-                      pattern="https?://.+"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please provide a valid URL.
-                    </Form.Control.Feedback>
-                  </Form.Group>
+          <Form
+            noValidate
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
+            <Row className="mt-3">
+              <Form.Group className="w-100">
+              <Form.Group controlId="jobTitle">
+                  <Form.Label>Full Name</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Ex: David Schwarz"
+                    name="full_name"
+                    value={formData.full_name}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
+                <Form.Control
+                  as="textarea"
+                  rows={7}
+                  placeholder="Enter bio"
+                  name="bio"
+                  value={formData.bio}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
 
-                  <Form.Group controlId="linkedinLink">
-                    <Form.Label>LinkedIn Link</Form.Label>
-                    <Form.Control
-                      type="url"
-                      placeholder="Enter LinkedIn link"
-                      name="linkedin_link"
-                      value={formData.linkedin_link}
-                      onChange={handleChange}
-                      pattern="https?://.+"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please provide a valid URL.
-                    </Form.Control.Feedback>
-                  </Form.Group>
-
-                  <Form.Group controlId="bio">
-                    <Form.Label>Bio</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Enter bio"
-                      name="bio"
-                      value={formData.bio}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please provide a bio.
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-                <Col lg={6}>
-                  <Container
-                    className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                  >
-                    <Form.Group className="text-center">
-                      {formData.image ? (
-                        <>
-                          <figure>
-                            <Image
-                              className={appStyles.Image}
-                              src={formData.image}
-                              rounded
-                            />
-                          </figure>
-                          <div>
-                            <Form.Label
-                              className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                              htmlFor="image-upload"
-                            >
-                              Change the image
-                            </Form.Label>
-                          </div>
-                        </>
-                      ) : (
+              <Container
+                className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+              >
+                <Form.Group className="text-center">
+                  {formData.image ? (
+                    <>
+                      <figure>
+                        <Image
+                          className={appStyles.Image}
+                          src={formData.image}
+                          rounded
+                        />
+                      </figure>
+                      <div>
                         <Form.Label
-                          className="d-flex justify-content-center"
+                          className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
                           htmlFor="image-upload"
                         >
-                          <Asset
-                            src={Upload}
-                            message="Click or tap to upload an image"
-                          />
+                          Change the image
                         </Form.Label>
-                      )}
-                      <Form.File
-                        id="image-upload"
-                        accept="image/*"
-                        onChange={handleChangeImage}
-                        ref={imageInput}
-                      />
-                    </Form.Group>
-                  </Container>
-                  <Container className={`${appStyles.Content} d-flex justify-content-around`}>
-                    <Button
-                      className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                      onClick={() => window.history.back()}
+                      </div>
+                    </>
+                  ) : (
+                    <Form.Label
+                      className="d-flex justify-content-center"
+                      htmlFor="image-upload"
                     >
-                      Cancel
-                    </Button>
-                    <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                      Update
-                    </Button>
-                  </Container>
-                </Col>
-              </Row>
-            
+                      <Asset
+                        src={Upload}
+                        message="Click or tap to upload an image"
+                      />
+                    </Form.Label>
+                  )}
+                  <Form.File
+                    id="image-upload"
+                    accept="image/*"
+                    onChange={handleChangeImage}
+                    ref={imageInput}
+                  />
+                </Form.Group>
+              </Container>
+              <Container
+                className={`${appStyles.Content} d-flex justify-content-around`}
+              >
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  onClick={() => window.history.back()}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                  type="submit"
+                >
+                  Update
+                </Button>
+              </Container>
+            </Row>
           </Form>
         </Container>
       )}
 
-      {showAlert && (
-        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-          Profile Updated successfully!
-        </Alert>
-      )}
+      
     </div>
   );
 }

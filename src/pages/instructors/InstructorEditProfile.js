@@ -91,12 +91,12 @@ function InstructorEditProfile() {
       {showAlert && (
         <Container>
           <Alert
-          variant="success"
-          onClose={() => setShowAlert(false)}
-          dismissible
-        >
-          Profile Updated successfully!
-        </Alert>
+            variant="success"
+            onClose={() => setShowAlert(false)}
+            dismissible
+          >
+            Profile Updated successfully!
+          </Alert>
         </Container>
       )}
       {loading ? (
@@ -109,21 +109,19 @@ function InstructorEditProfile() {
             onSubmit={handleSubmit}
             encType="multipart/form-data"
           >
-            
             <Row className="mt-3">
               <Col lg={6}>
-              <Form.Group controlId="jobTitle">
-              <Form.Label>Job Title</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter job title"
-                name="job_title"
-                value={formData.job_title}
-                onChange={handleChange}
-                required
-              />
-             
-            </Form.Group>
+                <Form.Group controlId="jobTitle">
+                  <Form.Label>Job Title</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Enter job title"
+                    name="job_title"
+                    value={formData.job_title}
+                    onChange={handleChange}
+                    required
+                  />
+                </Form.Group>
                 <Form.Group controlId="websiteLink">
                   <Form.Label>Website Link</Form.Label>
                   <Form.Control
@@ -134,7 +132,6 @@ function InstructorEditProfile() {
                     onChange={handleChange}
                     pattern="https?://.+"
                   />
-                  
                 </Form.Group>
 
                 <Form.Group controlId="linkedinLink">
@@ -147,7 +144,6 @@ function InstructorEditProfile() {
                     onChange={handleChange}
                     pattern="https?://.+"
                   />
-                  
                 </Form.Group>
 
                 <Form.Group controlId="bio">
@@ -161,7 +157,6 @@ function InstructorEditProfile() {
                     onChange={handleChange}
                     required
                   />
-                 
                 </Form.Group>
               </Col>
               <Col lg={6}>
@@ -206,31 +201,25 @@ function InstructorEditProfile() {
                     />
                   </Form.Group>
                 </Container>
-               
               </Col>
             </Row>
-            <Container
-                  className={`m-4 d-flex justify-content-end`}
-                >
-                  <Button
-                    className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                    onClick={() => window.history.back()}
-                  >
-                    Cancel
-                  </Button>
-                  <Button
-                    className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                    type="submit"
-                  >
-                    Update
-                  </Button>
-                </Container>
+            <Container className={`m-4 d-flex justify-content-end`}>
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                onClick={() => window.history.back()}
+              >
+                Cancel
+              </Button>
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                type="submit"
+              >
+                Update
+              </Button>
+            </Container>
           </Form>
-          
         </Container>
       )}
-
-      
     </div>
   );
 }
