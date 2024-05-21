@@ -21,13 +21,14 @@ import AlertMessage from "../../components/AlertMessage";
 
 const CourseDetails = (props) => {
   const [videos, setVideos] = useState([]);
+  const [isEnrolled, setIsEnrolled] = useState(props.is_learner_enrolled_in_course)
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
   const [showModal, setShowModal] = useState(false);
   const [showShareButtonModal, setShowShareButtonModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [alertVariant, setAlertVariant] = useState('danger');
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertVariant, setAlertVariant] = useState("danger");
 
   const {
     id,
@@ -113,10 +114,31 @@ const CourseDetails = (props) => {
       console.error("Error submitting rating:", error);
       setAlertMessage(error.response?.data.detail);
       setShowAlert(true);
+      setAlertVariant("danger")
       setRating(rating_value);
       setRatingCount(rating_count);
     }
   };
+
+  const handleEnrollment = async()=>{
+    try {
+      const response = await axiosReq.post(`/courses/${id}/enroll/`);
+
+      if (response.status === 200) {
+        console.log(
+          "enrolled successfully"
+        );
+        setIsEnrolled(true);
+        setAlertMessage("Congrats! You have been Enrolled in Course Successfully ^_^ More Information will be sent to you later!");
+        setShowAlert(true);
+        setAlertVariant("success")
+      }
+    } catch (error) {
+      setAlertMessage(error.response?.data.detail);
+      setShowAlert(error.response? true : false);
+      setAlertVariant("danger")
+    }
+  }
 
   const handleEdit = () => navigate(`/courses/${id}/edit`);
   const handleDelete = () => setShowModal(true);
@@ -133,7 +155,8 @@ const CourseDetails = (props) => {
     } catch (err) {
       console.log(err);
       setAlertMessage("Error Deleting the course! Try again later!");
-            setShowAlert(true);
+      setShowAlert(true);
+      setAlertVariant("danger")
     }
   };
 
@@ -142,12 +165,12 @@ const CourseDetails = (props) => {
       {/* Top Section of the Course Details  */}
       <Col className={`py-2 p-3 p-lg-2 ${styles.Info}`} lg={7}>
         {showAlert && (
-                <AlertMessage
-                    variant={alertVariant} 
-                    message={alertMessage} 
-                    onClose={() => setShowAlert(false)} 
-                />
-            )}
+          <AlertMessage
+            variant={alertVariant}
+            message={alertMessage}
+            onClose={() => setShowAlert(false)}
+          />
+        )}
         {course_name && (
           <h1>
             {course_name}{" "}
@@ -225,10 +248,11 @@ const CourseDetails = (props) => {
       <Col lg={5} className="p-2">
         <Card className={styles.CustomCard}>
           <Card.Img variant="top" src={image} />
-
-          <Card.Header className={`text-center ${styles.CustomCardHeader}`}>
-            <h2>Enroll</h2>
-          </Card.Header>
+          {!isEnrolled && (
+            <Card.Header className={`text-center ${styles.CustomCardHeader}`} onClick={handleEnrollment}>
+              <h2>Enroll</h2>
+            </Card.Header>
+          )}
           <ListGroup variant="flush">
             <ListGroup.Item className={styles.ListGroupItem}>
               {/* share icon */}

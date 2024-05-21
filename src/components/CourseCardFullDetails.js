@@ -1,5 +1,9 @@
 import React from "react";
-import { Badge, Button, Card, ListGroup, Row } from "react-bootstrap";
+import Badge  from "react-bootstrap/Badge";
+import Button  from "react-bootstrap/Button";
+import Row  from "react-bootstrap/Row";
+import Card  from "react-bootstrap/Card";
+
 import styles from "../styles/CourseDetails.module.css";
 import { Link } from "react-router-dom";
 import Avatar from "../components/Avatar";
@@ -13,11 +17,7 @@ function CourseCardFullDetails(props) {
     summery,
     tags_details,
     tags,
-    students,
-    students_count,
-    student_id,
     rating_value,
-    rating_count,
     image,
     teacher,
     teacher_profile_id,
@@ -30,10 +30,14 @@ function CourseCardFullDetails(props) {
       className={`${styles.CustomCard} my-3 mx-2`}
       style={{ width: "20rem" }}
     >
-      <Link to={`/courses/${id}`}><Card.Img variant="top" src={image} /></Link>
+      <Link to={`/courses/${id}`}>
+        <Card.Img variant="top" src={image} />
+      </Link>
       <Card.Body>
         <Card.Title>
-        <Link to={`/courses/${id}`}><h2>{course_name}</h2></Link>
+          <Link to={`/courses/${id}`}>
+            <h2>{course_name}</h2>
+          </Link>
         </Card.Title>
         <Row
           className={`align-items-center justify-content-between   ${styles.InteractionIcons}`}
@@ -67,9 +71,11 @@ function CourseCardFullDetails(props) {
       <Card.Footer
         className={`d-flex justify-content-between ${styles.CustomCardFooter}`}
       >
-        <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
-          Learn More
-        </Button>
+        <Link to={`/courses/${id}`}>
+          <Button className={`${btnStyles.Button} ${btnStyles.Bright}`}>
+            Learn More
+          </Button>
+        </Link>
         <Rating size={25} initialValue={rating_value} readonly={true} />
       </Card.Footer>
     </Card>
