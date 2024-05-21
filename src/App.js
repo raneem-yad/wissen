@@ -13,6 +13,8 @@ import CoursesByTags from './pages/courses/CoursesByTags';
 import Profiles from './pages/profiles/Profiles';
 import InstructorEditProfile from './pages/instructors/InstructorEditProfile';
 import LearnerEditProfile from './pages/profiles/LearnerEditProfile';
+import NotFound from './components/NotFound';
+import Footer from './components/Footer';
 
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
@@ -21,7 +23,7 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar/>
-      {/* <Container className={styles.Main}> */}
+      <div className={styles.Main}>
         <Routes>
           <Route  path="/" element={<Home/>} />
           <Route  path="/signin" element={<SignInForm/>} />
@@ -35,9 +37,11 @@ function App() {
           <Route  path="/profiles/:id" element={ <Profiles/> } />
           <Route  path="/instructor/:id/edit" element={ <InstructorEditProfile/> } />
           <Route  path="/learner/:id/edit" element={ <LearnerEditProfile/> } />
-          <Route element={<p>Page not found!</p>} />
+          <Route path="*" element={<NotFound/>} />
         </Routes>
-      {/* </Container> */}
+      </div>
+      {/* footer section  */}
+      <Footer/>
     </div>
   );
 }
