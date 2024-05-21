@@ -29,6 +29,7 @@ const CourseDetails = (props) => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [alertVariant, setAlertVariant] = useState("danger");
+  const [loading, setLoading] = useState(false);
 
   const {
     id,
@@ -83,6 +84,7 @@ const CourseDetails = (props) => {
     return { __html: htmlString };
   };
   const handleRating = async (newRating) => {
+    setLoading(true);
     try {
       console.log(
         `data is id ${id} and rating ${newRating} and count ${ratingCount}`
@@ -93,6 +95,7 @@ const CourseDetails = (props) => {
       });
 
       if (response.status === 201) {
+        setLoading(false);
         console.log(
           "rating successfully with " + newRating + "and count " + ratingCount
         );
@@ -111,9 +114,10 @@ const CourseDetails = (props) => {
         setRatingCount(updatedCourseData.rating_count);
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error submitting rating:", error);
       setAlertMessage(error.response?.data.detail);
-      setShowAlert(true);
+      setShowAlert(error.response?true:false);
       setAlertVariant("danger")
       setRating(rating_value);
       setRatingCount(rating_count);
@@ -186,7 +190,7 @@ const CourseDetails = (props) => {
         {/* staticts part  */}
 
         {/* rating */}
-        {is_owner ? (
+        {!loading && (is_owner ? (
           <OverlayTrigger
             placement="top"
             overlay={<Tooltip>You can't rate your own Course</Tooltip>}
@@ -216,8 +220,8 @@ const CourseDetails = (props) => {
               readonly={true}
             />
           </OverlayTrigger>
-        )}
-        {ratingCount && <p className="text-muted">Rated by {ratingCount}</p>}
+        ))}
+        {!loading && ratingCount && <p className="text-muted">Rated by {ratingCount}</p>}
         {/* instructor and data about it */}
         {teacher && (
           <p>

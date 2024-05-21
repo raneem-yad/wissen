@@ -20,6 +20,7 @@ const InstructorProfile = (props) => {
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
   const [instructorCourses, setInstructorCourses] = useState([]);
+  const [loading, setLoading] = useState(false);
   const {
     id,
     owner,
@@ -42,7 +43,7 @@ const InstructorProfile = (props) => {
   
 
   useEffect(() => {
-    const handleMount = async ()=>{
+    const handleMountCourses = async ()=>{
 
         try {
             const {data} = await axiosReq.get(`/courses/by_instructor/${id}`);
@@ -51,12 +52,13 @@ const InstructorProfile = (props) => {
             console.log(error);
         }
     }
-    handleMount();
+    handleMountCourses();
     setRating(rating_value);
     setRatingCount(rating_count);
   }, [id, rating_value, rating_count]);
 
   const handleRating = async (newRating) => {
+    setLoading(true);
     try {
       console.log(
         `data is id ${id} and rating ${newRating} and count ${ratingCount}`
@@ -68,15 +70,15 @@ const InstructorProfile = (props) => {
       });
 
       if (response.status === 201) {
+        setLoading(false);
         console.log(
           "rating successfully with " + newRating + "and count " + ratingCount
         );
-
         // Fetch updated course data
-        const updatedInstructorResponse = await axios.get(
-          `/instructors/${id}/`
+        const updatedInstructorResponse = await axiosReq.get(
+          `/users/${props.user_id}/`
         );
-        const updatedInstructorData = updatedInstructorResponse.data;
+        const updatedInstructorData = updatedInstructorResponse.data.profile;
 
         console.log(
           "after rating successfully with " +
@@ -86,9 +88,18 @@ const InstructorProfile = (props) => {
         );
         setRating(updatedInstructorData.rating_value);
         setRatingCount(updatedInstructorData.rating_count);
+        etAlertMessage(error.response?.data.detail);
+        setShowAlert(true);
+        setAlertVariant("success")
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error submitting rating:", error);
+      setAlertMessage(error.response?.data.detail);
+      setShowAlert(error.response?true:false);
+      setAlertVariant("danger")
+      setRating(rating_value);
+      setRatingCount(rating_count);
     }
   };
   return (
@@ -145,7 +156,7 @@ const InstructorProfile = (props) => {
             )}
           </Row>
           <Row className="pl-3">
-            {is_owner ? (
+            {!loading && (is_owner ? (
               <OverlayTrigger
                 placement="top"
                 overlay={<Tooltip>You can't rate yourself!</Tooltip>}
@@ -178,8 +189,8 @@ const InstructorProfile = (props) => {
                   readonly={true}
                 />
               </OverlayTrigger>
-            )}
-            {ratingCount && (
+            ))}
+            {!loading && ratingCount && (
               <p className="text-muted"> Rated by {ratingCount} People</p>
             )}
           </Row>

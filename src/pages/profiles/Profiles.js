@@ -11,17 +11,16 @@ function Profiles() {
   const [profile, setProfile] = useState({});
   const [loaded, setLoaded] = useState(false);
 
+  const handleMount = async () => {
+    try {
+      const { data } = await axiosReq.get(`/users/${id}`);
+      setProfile(data);
+      setLoaded(true);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   useEffect(() => {
-    const handleMount = async () => {
-      try {
-        const { data } = await axiosReq.get(`/users/${id}`);
-        setProfile(data);
-        setLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     handleMount();
   }, [id]);
 
@@ -29,9 +28,9 @@ function Profiles() {
     <div className={styles.TopMargin}>
       {loaded ? (
         profile.role === "learner" ? (
-          <LearnerProfile {...profile.profile} />
+          <LearnerProfile {...profile.profile}  />
         ) : (
-          <InstructorProfile {...profile.profile} />
+          <InstructorProfile {...profile.profile}  user_id={id} />
         )
       ) : (
         <Asset spinner />
