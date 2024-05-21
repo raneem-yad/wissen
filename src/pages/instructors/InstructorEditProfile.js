@@ -6,15 +6,14 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/CourseCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Upload from "../../assets/upload.png";
-import {
-  Form,
-  Button,
-  Row,
-  Image,
-  Container,
-  Col,
-  Alert,
-} from "react-bootstrap";
+
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Alert from "react-bootstrap/Alert";
 
 function InstructorEditProfile() {
   const { id } = useParams();
@@ -89,13 +88,31 @@ function InstructorEditProfile() {
 
   return (
     <div className={styles.TopMargin}>
+      {showAlert && (
+        <Container>
+          <Alert
+          variant="success"
+          onClose={() => setShowAlert(false)}
+          dismissible
+        >
+          Profile Updated successfully!
+        </Alert>
+        </Container>
+      )}
       {loading ? (
         <Asset spinner />
       ) : (
         <Container>
           <h2 className="mt-5">Edit Your Profile</h2>
-          <Form noValidate onSubmit={handleSubmit} encType="multipart/form-data">
-            <Form.Group controlId="jobTitle">
+          <Form
+            noValidate
+            onSubmit={handleSubmit}
+            encType="multipart/form-data"
+          >
+            
+            <Row className="mt-3">
+              <Col lg={6}>
+              <Form.Group controlId="jobTitle">
               <Form.Label>Job Title</Form.Label>
               <Form.Control
                 type="text"
@@ -105,123 +122,115 @@ function InstructorEditProfile() {
                 onChange={handleChange}
                 required
               />
-              <Form.Control.Feedback type="invalid">
-                Please provide a job title.
-              </Form.Control.Feedback>
-              </Form.Group>
-              <Row className="mt-3">
-                <Col lg={6}>
-                  <Form.Group controlId="websiteLink">
-                    <Form.Label>Website Link</Form.Label>
-                    <Form.Control
-                      type="url"
-                      placeholder="Enter website link"
-                      name="website_link"
-                      value={formData.website_link}
-                      onChange={handleChange}
-                      pattern="https?://.+"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please provide a valid URL.
-                    </Form.Control.Feedback>
-                  </Form.Group>
+             
+            </Form.Group>
+                <Form.Group controlId="websiteLink">
+                  <Form.Label>Website Link</Form.Label>
+                  <Form.Control
+                    type="url"
+                    placeholder="Enter website link"
+                    name="website_link"
+                    value={formData.website_link}
+                    onChange={handleChange}
+                    pattern="https?://.+"
+                  />
+                  
+                </Form.Group>
 
-                  <Form.Group controlId="linkedinLink">
-                    <Form.Label>LinkedIn Link</Form.Label>
-                    <Form.Control
-                      type="url"
-                      placeholder="Enter LinkedIn link"
-                      name="linkedin_link"
-                      value={formData.linkedin_link}
-                      onChange={handleChange}
-                      pattern="https?://.+"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please provide a valid URL.
-                    </Form.Control.Feedback>
-                  </Form.Group>
+                <Form.Group controlId="linkedinLink">
+                  <Form.Label>LinkedIn Link</Form.Label>
+                  <Form.Control
+                    type="url"
+                    placeholder="Enter LinkedIn link"
+                    name="linkedin_link"
+                    value={formData.linkedin_link}
+                    onChange={handleChange}
+                    pattern="https?://.+"
+                  />
+                  
+                </Form.Group>
 
-                  <Form.Group controlId="bio">
-                    <Form.Label>Bio</Form.Label>
-                    <Form.Control
-                      as="textarea"
-                      rows={3}
-                      placeholder="Enter bio"
-                      name="bio"
-                      value={formData.bio}
-                      onChange={handleChange}
-                      required
-                    />
-                    <Form.Control.Feedback type="invalid">
-                      Please provide a bio.
-                    </Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-                <Col lg={6}>
-                  <Container
-                    className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-                  >
-                    <Form.Group className="text-center">
-                      {formData.image ? (
-                        <>
-                          <figure>
-                            <Image
-                              className={appStyles.Image}
-                              src={formData.image}
-                              rounded
-                            />
-                          </figure>
-                          <div>
-                            <Form.Label
-                              className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                              htmlFor="image-upload"
-                            >
-                              Change the image
-                            </Form.Label>
-                          </div>
-                        </>
-                      ) : (
-                        <Form.Label
-                          className="d-flex justify-content-center"
-                          htmlFor="image-upload"
-                        >
-                          <Asset
-                            src={Upload}
-                            message="Click or tap to upload an image"
+                <Form.Group controlId="bio">
+                  <Form.Label>Bio</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter bio"
+                    name="bio"
+                    value={formData.bio}
+                    onChange={handleChange}
+                    required
+                  />
+                 
+                </Form.Group>
+              </Col>
+              <Col lg={6}>
+                <Container
+                  className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+                >
+                  <Form.Group className="text-center">
+                    {formData.image ? (
+                      <>
+                        <figure>
+                          <Image
+                            className={appStyles.Image}
+                            src={formData.image}
+                            rounded
                           />
-                        </Form.Label>
-                      )}
-                      <Form.File
-                        id="image-upload"
-                        accept="image/*"
-                        onChange={handleChangeImage}
-                        ref={imageInput}
-                      />
-                    </Form.Group>
-                  </Container>
-                  <Container className={`${appStyles.Content} d-flex justify-content-around`}>
-                    <Button
-                      className={`${btnStyles.Button} ${btnStyles.Blue}`}
-                      onClick={() => window.history.back()}
-                    >
-                      Cancel
-                    </Button>
-                    <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
-                      Update
-                    </Button>
-                  </Container>
-                </Col>
-              </Row>
-            
+                        </figure>
+                        <div>
+                          <Form.Label
+                            className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                            htmlFor="image-upload"
+                          >
+                            Change the image
+                          </Form.Label>
+                        </div>
+                      </>
+                    ) : (
+                      <Form.Label
+                        className="d-flex justify-content-center"
+                        htmlFor="image-upload"
+                      >
+                        <Asset
+                          src={Upload}
+                          message="Click or tap to upload an image"
+                        />
+                      </Form.Label>
+                    )}
+                    <Form.File
+                      id="image-upload"
+                      accept="image/*"
+                      onChange={handleChangeImage}
+                      ref={imageInput}
+                    />
+                  </Form.Group>
+                </Container>
+               
+              </Col>
+            </Row>
+            <Container
+                  className={`m-4 d-flex justify-content-end`}
+                >
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                    onClick={() => window.history.back()}
+                  >
+                    Cancel
+                  </Button>
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Blue}`}
+                    type="submit"
+                  >
+                    Update
+                  </Button>
+                </Container>
           </Form>
+          
         </Container>
       )}
 
-      {showAlert && (
-        <Alert variant="success" onClose={() => setShowAlert(false)} dismissible>
-          Profile Updated successfully!
-        </Alert>
-      )}
+      
     </div>
   );
 }

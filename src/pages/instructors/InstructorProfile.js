@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, OverlayTrigger, Row, Tooltip } from "react-bootstrap";
+
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Row from "react-bootstrap/Row";
+import Tooltip from "react-bootstrap/Tooltip";
+
 import { Link } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -178,14 +184,14 @@ const InstructorProfile = (props) => {
             )}
           </Row>
 
-          <Row className="pl-3">
+          {bio && <Row className="pl-3">
             <p>
               <strong>
                 <i className="fa-solid fa-user-tie"></i>
               </strong>
               About Me : {bio}
             </p>
-          </Row>
+          </Row>}
         </Col>
         {/* right side {image - links} */}
         <Col
@@ -196,20 +202,20 @@ const InstructorProfile = (props) => {
             <Avatar src={image || defaultLogo} height={180} />
           </Link>
           <Row className="m-3">
-            <Col>
+            {linkedin_link && <Col>
               <CustomButton
                 link={linkedin_link}
                 text="Linkedin"
                 icon='<i className="fa-brands fa-linkedin"></i>'
               />
-            </Col>
-            <Col>
+            </Col>}
+           {website_link && <Col>
               <CustomButton
                 link={website_link}
                 text="Website"
                 icon='<i className="fa-solid fa-window-maximize"></i>'
               />
-            </Col>
+            </Col>}
           </Row>
           
           {is_owner && <Row className="m-3">
@@ -226,10 +232,10 @@ const InstructorProfile = (props) => {
       <hr/>
       <h3>Instructor Courses ({instructorCourses.length})</h3>
       <div className="row justify-content-between">
-        
-        { instructorCourses.map(course => (
+        {instructorCourses.length ? 
+         (instructorCourses.map(course => (
             <CourseCardFullDetails key={course.id} {...course}/>
-        ))}
+        ))):(<Row className="ml-3"><p>Create Course to your added Courses here</p></Row>)}
       </div>
     </Container>
   );
