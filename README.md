@@ -159,7 +159,182 @@ Its clean and minimalist aesthetic exudes professionalism and clarity, guiding u
 **Roboto (Normal Texts):** Designed for optimal legibility and versatility, Roboto serves as the backbone of our content, ensuring a smooth and comfortable reading experience for learners of all backgrounds. Its balanced proportions, friendly curves, and crisp letterforms strike the perfect balance between professionalism and approachability, making it an ideal choice for conveying information effectively and engaging users with our course materials.
 
 
+## The Structure Plane
 
+### Existing Features
+
+
+#### Favicon
+A site favicon with Website name was implemented with the sites' logo. 
+This will allow users to easily identify Wissen Website when 
+they have multiple tabs open.
+![favicon](/readme/favicon.png)
+
+#### Navigation 
+The Website use navigation bar to easy access the website econtent!
+Checks were implemented to detect when a user is signed in or signed out and nav items displayed accordingly.
+This will prevent users from being able to click buttons from the UI in order to reach restricted pages.
+And showing Nav items according to user role. It's also responsive so it collapses into a hamburger menu 
+on smaller devices. This will ensure that no navigation items overlap and users can access and navigate the site
+from any size device.
+
+unregistered user
+![unregistered user](/readme/nav-unregistered.png)
+registered learner
+![registered learner](/readme/nav-learner.png)
+registered instructor
+![registered_instructor](/readme/nav-instructor.png)
+responsiveness
+![nav-small](/readme/navbar_small_screen.png)
+
+
+#### HomePage - Hero Section 
+Hero
+The homepage hero section is the large eye-catching section that is just beneath the navigation bar. The hero is only displayed on the homepage as a Slider. 
+It is used to catch the users attention, and to clearly showcase the general topic of the site. 
+It features three large images with information about the website.
+
+![slider](/readme/slider.png)
+
+#### HomePage - Top Rated Courses
+The Top three rated courses is a dynamic list of the top-rated courses that have been created by instructors.
+Each course is displayed as a card, and each card has an image, course name, instructor profile image and  name, posted date , tags , description and in the card footer a rating of 5 stars and a button to the full recipe page.
+This section is fully responsive, and cards stack on top of each other on smaller screens.
+
+![favicon](/readme/top-rated-courses.png)
+
+####  HomePage - Courses per Category
+A maximum of six courses will be presented per category.
+Currently, the website has three categories: Language Learning, Business and Management, and IT and Software Development.
+When you click on any of the three categories, the latest six courses in that category will be displayed.
+
+![Courses per Category](/readme/course_cat.png)
+
+####  HomePage - Top Rated Instructors
+The Top Rated Instructors is a dynamic list showcasing the top instructors. Each instructor's information is displayed on a card, which includes their image, name, job title, expertise, and a rating out of 5 stars. Additionally, each card provides statistics on the number of courses the instructor has created and the number of learners enrolled in those courses.
+![instructors](/readme/top-instructors.png)
+
+#### authentication - Sign Up
+A user can navigate to the sign-up page via the site navigation bar if they are not logged in. The sign-up page contains all the required fields needed to create a user account. Since the website is designed for learning purposes, anyone can become an instructor. In the next version, only individuals with a certificate will be allowed to become instructors. Once a user correctly submits the form, they are redirected back to the login page to enter their newly created credentials.
+
+![sing up](/readme/signup.png)
+
+#### authentication - Sign in
+A user can navigate to the log in page via the site navigation bars if they are not already logged in.
+The styling of the log in page is very similar to the rest of the user authorization pages.
+The color scheme and background image are consistent, but the form fields are different. 
+Once the log in form is submitted correctly the user is redirected to the homepage as a logged-in user.
+
+![sing in](/readme/signin.png)
+
+#### Search Courses
+The search functionality on the website allows users to easily find courses by entering keywords related to course names. Users can simply type their desired keywords into the search bar to view relevant courses matching their search criteria.
+
+In addition to keyword search, the website also provides the option to sort courses alphabetically or by the date posted. By combining keyword search with sorting mechanisms, Wissen offers users a comprehensive and customizable search experience, enabling them to find exactly what they're looking for quickly and efficiently.
+
+If no results are found for your search, a "Page Not Found" message will be displayed.
+
+
+
+![search](/readme/course_search.png)
+
+![search-notfound](/readme/search-notfound.png)
+
+
+#### Course Details
+The Course Details page displays the full information about a course. Each course has a dedicated Course Details page, which is available for all users to view, including non-logged-in users. The main purpose of this page is to present the full course description and requirements. Users typically navigate to a Course Details page by clicking the button on the course card either on the home page or the courses page. As the user has shown specific interest in the course, all relevant information about the course is displayed here.
+
+![course details](/readme/course-details-top-section.png)
+
+The Course Details page also includes more details about the learning goals and video content.
+
+At this **version**, uploading videos as course content has been implemented in the backend only. While the videos are available in the backend, they are not yet accessible on the front end. Currently, clicking on any video links will not work, as they are placeholders and a video player has not been created due to time constraints. This feature will be included in the next version or as a future enhancement.
+
+#### Course Enrollment
+When a learner chooses to enroll in a course, the Enrollment button is displayed. When the learner clicks on it, they will be enrolled in the course, and a green alert message will confirm the action. In this version, the enrollment process ends here due to time constraints. In the next version, the process will redirect the user to the course video content.
+
+![enroll](/readme/enroll.png)
+
+#### Share Course
+The share feature on the website allows users to easily share their favorite courses with friends, family, and followers on social media platforms such as Facebook and Twitter.
+
+When users come across a course they want to share, they can simply click on the share icon associated with that course. This action opens a popup or modal window with options to share the course on various social media platforms.
+
+By leveraging the share feature, users can help spread the word about our courses and enable others to discover valuable learning opportunities.
+
+![shre](/readme/share.png)
+
+
+#### Course Rating
+The rating feature allows users to rate courses based on their experience, using a scale of one to five stars to represent the overall quality of the course. Users can provide their rating by clicking on the appropriate number of stars, ranging from one star for the lowest rating to five stars for the highest rating.
+
+In addition to individual ratings, the website also displays the average rating for each course, calculated based on the collective ratings provided by all users. Beside the average rating, the number of people who have rated the course is shown, providing users with an indication of the course's popularity and the reliability of the average rating. This information helps users make informed decisions about which courses to try and enables them to gauge the consensus among other users.
+
+All signed-in users can rate courses, except for the instructor who created the course. A small pop-up message will notify the instructor that they cannot rate their own course.
+
+![rating](/readme/rating.png)
+
+#### Courses Comments
+Each course has a comment icon displaying the count of comments on the course.
+
+At the bottom of each Course Details page, there is a comments section for users to post comments. Logged-in users can use the comment form to post a comment on that particular course. Comments are listed from the most recent at the top to the oldest at the bottom. The username of the comment author is displayed, along with the date, profile photo, and the body of the comment.
+
+Comment creators can edit or delete their own comments. Upon deletion, a confirmation pop-up message will ask the user to confirm if they really want to delete the comment.
+
+![comments](/readme/comments.png)
+
+#### Create Course
+Create Course allows instructors to submit courses to the Wissen site. The page is not accessible to unauthenticated users or learners; instructors must have a profile set up first. The page features consistent styling with the rest of the site for a cohesive look, and includes the header and footer navigation menus for easy user navigation.
+
+
+#### Edit Course
+An instructor can edit their courses by clicking on the edit button, which redirects them to an edit form. This form will be pre-filled with all the previous information of the course. Additionally, two requests will be sent to the backend to retrieve all available categories and tags.
+
+After making the necessary edits, the instructor can click on the Update button. Upon clicking, the instructor will be redirected back to the Course Details page to see the updates they have made to their course.
+![course](/readme/course_edit_form.png)
+
+#### Delete Course
+An instructor can delete their courses easily from the Course Details page. If an instructor clicks the delete button, a delete confirmation message is displayed, seeking confirmation for the course deletion. The user then has the option to cancel the deletion by clicking the cancel button or to confirm the course deletion by clicking the delete button. The delete button is purposefully colored red as a warning.
+
+If the user clicks the cancel button, the course content returns to normal. If the user clicks the delete button, the course is deleted from the database.
+
+### instructor profile 
+Upon clicking on the instructor's image or name, users will navigate to their profile page. The profile page includes comprehensive details about the instructor, such as their image, statistics (number of learners and courses created), and a section where learners can rate their instructors. Additionally, users can follow the instructor on LinkedIn or visit their website to explore other services they offer.
+
+Underneath the instructor's information, a list of all courses created by the instructor will be displayed. If the instructor is viewing their own profile, an edit icon will appear to allow them to edit any information in their profile.
+![instructor](/readme/instructor_profile.png)
+
+edit page 
+
+![edit](/readme/instructoredit_profile.png)
+
+### Learner profile 
+Users can navigate to their profile by clicking on "Profile" in the navbar. The profile page includes information about the learner, and in the "My Learning" section, it shows all courses the learner has enrolled in. In future versions, a progress bar will be added to indicate the learner's progress in each course.
+
+Similarly to the instructor's profile, if the learner is viewing their own profile, an edit icon will be shown. Clicking on this icon will navigate them to an edit form where they can update their profile information.
+
+![learner](/readme/learner_profile.png)
+
+
+
+#### Website Confirmation Message 
+Upon deleting actions, such as deleting a course or a comment, a pop-up confirmation message will ask the user if they are really sure they want to proceed with the action.
+
+![confirmation](/readme/confimation_action.png)
+
+
+#### Website Alert Message
+When a user performs actions such as creating or updating, an alert message will appear. The alert will have a green background color to indicate that the action was successfully completed, along with a corresponding success message. If an error occurs, a red background color will be used to indicate the issue, accompanied by an error message.
+
+![alert](/readme/alert.png)
+
+
+#### 404 Page
+The 404 page is triggered when a user navigates to a site URL which doesn't exist.
+This could be because of a number of reasons, 
+including a faulty link or an expired URL.
+
+![404](/readme/404.png)
 
 ## Testing
 
