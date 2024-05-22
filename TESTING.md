@@ -29,7 +29,7 @@ this could be improved in the future by compressing
 images before uploading them.
 Unfortunately, I did not have time to implement this functionality in this iteration.
 
-![lighthouse]()
+![lighthouse](/readme/testing/lighthouse.png)
 
 
 ## Responsiveness
