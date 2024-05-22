@@ -97,16 +97,32 @@ this epic covers each role profile for instructor and learner.
 Wireframes were created using [Balsamiq](https://balsamiq.com/) to plan content flow and styling for Wissen. Some differences can be seen between the original wireframes and the finished product, and this is due to design choices made during the creative process.
 
 ### Home Page 
-![Home Page Wireframe](readme/HomePage.png)
+![Home Page Wireframe](readme/wireframe/Home-page.png)
 
 ### Course Details
-![Recipe Details Wireframe](readme/recipe-details.png)
+![Course Details Wireframe](readme/wireframe/course-details.png)
 
-### Search Recipes
-![Search Recipes Wireframe](readme/search-recipes.png)
+### Search courses
+![Search courses Wireframe](readme/wireframe/search-course.png)
 
-### Add Recipes
-![Add Recipes Wireframe](readme/add-recipe-form.png)
+### Add Courses
+![Add Courses Wireframe](readme/wireframe/create-course.png)
+
+### Instructor Profile
+![Instructor Profile](/readme/wireframe/Instructor-Page.png)
+
+### Student Profile
+![student Profile](/readme/wireframe/Student-Profile.png)
+
+### login
+![login](/readme/wireframe/login.png)
+
+### Singup
+![signup](/readme/wireframe/signup.png)
+
+
+### Attending Course
+![Attending](/readme/wireframe/attending-course.png)
 
 ## Site Structure 
 
@@ -120,11 +136,6 @@ For new users or those who need to log in, the website provides authentication p
 
 Finally, the footer of the website contains essential info about the website, and links to the website's social media profiles, allowing users to stay connected and informed about the latest updates and news related to Wissen.
 
-![Header Nav Logged In](readme/header-user.png)
-
-![Header Nav Not Logged In](readme/header.png)
-
-![Footer](readme/footer.png)
 
 ## Design Inspiration
 
@@ -335,6 +346,196 @@ This could be because of a number of reasons,
 including a faulty link or an expired URL.
 
 ![404](/readme/404.png)
+
+<hr>
+
+### Future Features 
+
+1. Creating a UI page which enables instructors to upload their video content. 
+2. Creating a UI to enable enrolled learners to watch the course content. 
+3. Adding an FAQ section to each course. 
+4. Dividing the process of adding a course into steps rather than using a long form on one page. 
+5. Implementing login with social media accounts. 
+6. Adding "Forgot Password" functionality. 
+7. Integrating a payment system. 
+8. Adding more types of content for courses, not just video. 
+9. Implementing a rating system with comments to express why you chose to give this rating. 
+10. When clicking on a category, showing all courses in that category.
+
+
+### Component Reusability
+
+Our application's architecture emphasizes reusability and modularity. Here is an overview of the reusable components:
+
+#### `Avatar.js`
+
+- **Description**: Displays user avatars with optional text.
+- **Props**:
+  - `src`: The image source URL for the avatar.
+  - `height`: The size of the avatar (default `45`).
+  - `text`: Optional text to display alongside the avatar.
+- **Usage**: Used in user profiles, comment sections, and as navigational items.
+
+#### `AlertMessage.js`
+
+- **Description**: An alert message component for displaying messages with different styles and options to close.
+- **Props**:
+  - `variant`: String, variant of the alert (e.g., 'primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark').
+  - `message`:  String, the message content to be displayed in the alert.
+  - `onClose`: Function, callback function triggered when the close button is clicked.
+- **Usage**: used as response to user actions
+
+#### `Assets.js`
+
+- **Description**: A component for displaying an asset, which can be either a spinner (loading animation), an image, or a message.
+- **Props**:
+  - `spinner`: Boolean, whether to display a spinner animation. 
+  - `src`: String, source URL of the image to be displayed. 
+  - `message`: String, optional message to display below the image.
+
+- **Usage**: This component allows the website to display an asset with flexibility depending on the props passed, If spinner is true, it shows a loading spinner.
+If src is provided, it displays an image. If message is provided, it displays a message below the image.
+
+#### `ConfirmationModal.js`
+
+- **Description**: A modal component for confirming actions, with options to confirm or cancel.
+- **Props**:
+  - `show`: Boolean, controls whether the modal is visible. 
+  - `handleClose`: Function, callback function for closing the modal. 
+  - `handleConfirm`: Function, callback function for confirming the action. 
+  - `message`: String, message to display in the modal body.
+
+- **Usage**: This component provides a modal window for confirming actions.
+
+#### `CourseCardFullDetails.js`
+
+- **Description**: Displays detailed information about a course in a card format, including course name, summary, tags, instructor details, and rating.
+- **Props**:
+  - `id`: String or Number, unique identifier for the course. 
+  - `course_name`: String, name of the course. 
+  - `summery`: String, summary or description of the course. 
+  - `tags_details`: Array of Strings, details about the tags associated with the course. 
+  - `tags`: Array of Strings, tags associated with the course. 
+  - `rating_value`: Number, average rating value of the course. 
+  - `image`: String, URL of the course image. 
+  - `teacher`: String, name of the teacher or instructor. 
+  - `teacher_profile_id`: String or Number, unique identifier for the teacher's profile. 
+  - `teacher_image`: String, URL of the teacher's profile image. 
+  - `updated_date`: String, date when the course was last updated.
+
+- **Usage**: This component renders a detailed card view of a course,used in the homepage , course search and two types of profiles. it used where it needs to show a course with details
+
+
+#### `CourseShareModal.js`
+
+- **Description**: Modal component for sharing a course via various social media platforms.
+- **Props**:
+  - `show`: Boolean, controls whether the modal is visible. 
+  - `handleClose`: Function, callback function for closing the modal. 
+  - `url`: String, URL of the course to be shared. 
+  - `title`: String, title of the course to be shared. 
+  - `description`: String, description or summary of the course to be shared.
+
+- **Usage**: This component displays a modal window for sharing a course via Facebook, Twitter, LinkedIn, and WhatsApp.Used in course details page
+
+#### `CustomButton.js`
+
+- **Description**: A customizable button component that opens a link in a new tab when clicked.
+- **Props**:
+  - `link`: String, URL to be opened when the button is clicked. 
+  - `text`: String, text content to display on the button. 
+  - `Icon`: JSX element, optional icon to display before the text.
+
+- **Usage**: used in instructor Profile to open socail media links in new tab
+
+#### `Footer.js`
+
+- **Description**: Footer component displaying a logo and copyright information.
+- **Usage**: used in App.js to show the footer in all website pages.
+
+#### `HomeHero.js`
+
+- **Description**: Carousel component displaying three slides with images and captions.
+- **Usage**: Show Carousel in HomePage banner.
+
+#### `InstructorCard.js`
+
+- **Description**: Displays information about an instructor, including their image, name, job title, expertise badges, ratings, course and learner counts, biography, and links.
+- **Props**:
+  - `id`: ID of the instructor.  
+  - `owner`: Name of the instructor. 
+  - `expertise`: Array of expertise items. 
+  - `job_title`: Job title of the instructor. 
+  - `rating_value`: Average rating value of the instructor. 
+  - `rating_count`: Number of ratings received. 
+  - `course_count`: Number of courses created by the instructor. 
+  - `image`: URL or path to the instructor's image. 
+  - `bio`: Biography or description of the instructor. 
+  - `learner_count`: Number of learners enrolled in the instructor's courses. 
+  - `website_link`: Link to the instructor's website. 
+  - `linkedin_link`: Link to the instructor's LinkedIn profile. 
+  - `is_owner`: Boolean indicating if the current user is the owner of the profile. 
+  - `created_date`: Date when the instructor profile was created. 
+  - `updated_date`: Date when the instructor profile was last updated.
+
+- **Usage**: used in HomePage to show top-rated instructors.
+
+#### `MoreDropdown.js`
+
+- **Description**:  Dropdown menu with options to edit and delete an item, triggered by clicking on three dots icon.
+
+- **Props**:
+  - `handleEdit`: Function to handle the edit action. 
+  - `handleDelete`: Function to handle the delete action.
+
+- **Usage**: used in CourseDetails Page and Comments
+
+#### `NotFound.js`
+
+- **Description**: Component to display a not found message with an image.
+- **Usage**: it used when the link to page not found (404 Page)
+
+#### `NavBar.js`
+
+- **Description**: The navigation bar for the application, responsive and adaptive based on user authentication status.
+- **Props**: None (utilizes context to determine the current user state).
+- **Usage**: Placed at the top of all page layouts for consistent navigation.
+
+
+
+## Packages and Tools
+
+In this project, a variety of libraries and tools were utilized to enhance functionality and development efficiency. 
+Below is a list of these technologies along with their purposes:
+
+- **React**
+  - A JavaScript library for building dynamic and interactive user interfaces. Ideal for single-page applications.
+  
+- **Axios**
+  - A promise-based HTTP client for making HTTP requests, used for fetching or saving data from/to a server.
+
+- **Bootstrap & React-Bootstrap**
+  - Bootstrap provides responsive design elements and layouts. React-Bootstrap adapts these into React components for consistent styling.
+
+- **JWT-Decode**
+  - A library for decoding JSON Web Tokens. Useful for interpreting the token's data on the client side.
+
+- **React Router DOM**
+  - Manages navigation in React applications, enabling dynamic routing without page reloads.
+
+- **React Infinite Scroll Component**
+  - Implements infinite scrolling, loading content as the user scrolls down, enhancing user experience.
+
+- **react-icons**
+  - Library that provides popular icons from various icon packs as React components.
+
+- **react-share**
+  - Social media share buttons for React.
+- **react-simple-star-rating**
+  - Simple star rating component for React.
+- **web-vitals**
+  - Library for measuring real user performance on your website.
+
 
 ## Testing
 

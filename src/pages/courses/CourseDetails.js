@@ -238,7 +238,7 @@ const CourseDetails = (props) => {
       <Col lg={5} className="p-2">
         <Card className={styles.CustomCard}>
           <Card.Img variant="top" src={image} />
-          {!isEnrolled && (
+          {!isEnrolled && currentUser?.profile_type === "learner" && (
             <Card.Header className={`text-center ${styles.CustomCardHeader}`} onClick={handleEnrollment}>
               <h2>Enroll</h2>
             </Card.Header>

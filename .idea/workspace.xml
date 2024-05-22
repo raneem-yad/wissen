@@ -5,41 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="back in commits to installing phase">
-      <change afterPath="$PROJECT_DIR$/readme/404.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/alert.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/comments.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/confimation_action.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/course-details-top-section.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/course_cat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/course_edit_form.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/course_search.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/create_course.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/enroll.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/instructor_profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/instructoredit_profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/learner_create_course_error.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/learner_profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/learneredit-profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/nav-instructor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/nav-learner.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/nav-unregistered.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/navbar_small_screen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/rating.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/search-courses.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/search-notfound.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/share.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/signin.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/signup.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/slider.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/top-instructors.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/top-rated-courses.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/video.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/Home-page.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/Instructor-Page.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/Student-Profile.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/attending-course.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/course-details.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/create-course.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/login.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/search-course.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/wireframe/signup.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.module.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.module.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/CourseCard.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/courses/CourseDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/courses/CourseDetails.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/courses/CoursesTopThree.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/courses/CoursesTopThree.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,6 +61,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/readme/wireframe" />
       <recent name="$PROJECT_DIR$/readme" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/github-board.png" />
