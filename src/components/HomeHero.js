@@ -1,7 +1,7 @@
 import React from "react";
-import slide1 from "../assets/slider/slide3.jpg";
-import slide2 from "../assets/slider/slide2.jpg";
-import slide3 from "../assets/slider/slide6.jpg";
+import slide1 from "../assets/slider/slide3.webp";
+import slide2 from "../assets/slider/slide2.webp";
+import slide3 from "../assets/slider/slide6.webp";
 import Carousel from 'react-bootstrap/Carousel';
 import styles from "../styles/Hero.module.css";
 
