@@ -24,10 +24,8 @@
 ## Lighthouse Testing
 
 Lighthouse testing was performed and found performance to be poor. 
-While this is to be expected with so many images,
-this could be improved in the future by compressing 
-images before uploading them.
-Unfortunately, I did not have time to implement this functionality in this iteration.
+The Poor performance caused by slider image I change them to Webp
+and got no success in improve it.
 
 ![lighthouse](/readme/testing/lighthouse.png)
 
@@ -38,7 +36,7 @@ All pages were tested to ensure responsiveness on screen sizes from 320px and up
 
 Steps to test:
 
-* Open browser and navigate to body-doodles
+* Open browser and navigate to Wissen_Website
 * Open the developer tools (right click and inspect)
 * Set to responsive and decrease width to 320px
 * Set the zoom to 50%
@@ -52,19 +50,9 @@ Actual:
 
 Website behaved as expected.
 
-Website was also opened on the following devices and no responsive issues were seen:
 
-Oukitel C21 Pro TCL 30 Pro iPhone SE
-
-## Eslint
-
-Eslint was installed and configured locally. After running, one warning appeared about react version not specified but no errors were logged.
-
-<blockquote>
-
-C:\Users\garet\body-doodles>npx eslint src
+## validator 
 
 
-npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
 
-Warning: React version not specified in eslint-plugin-react settings. See https://github.com/jsx-eslint/eslint-plugin-react#configuration .</blockquote>
+## Bugs

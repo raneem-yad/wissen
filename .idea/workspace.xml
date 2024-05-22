@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="fix  Largest Contentful Paint (LCP)" />
+    <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="fix  Largest Contentful Paint (LCP)">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TESTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/TESTING.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
