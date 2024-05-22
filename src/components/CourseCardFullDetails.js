@@ -31,7 +31,7 @@ function CourseCardFullDetails(props) {
       style={{ width: "20rem" }}
     >
       <Link to={`/courses/${id}`}>
-        <Card.Img variant="top" src={image} />
+        <Card.Img variant="top" src={image} alt={course_name} />
       </Link>
       <Card.Body>
         <Card.Title>

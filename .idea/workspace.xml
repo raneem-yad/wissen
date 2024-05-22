@@ -4,21 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="back in commits to installing phase">
-      <change afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/Home-page.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/Instructor-Page.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/Student-Profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/attending-course.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/course-details.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/create-course.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/login.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/search-course.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/readme/wireframe/signup.png" afterDir="false" />
+    <list default="true" id="0e9772f0-f2c1-41ac-9cdb-1fb543ef94ed" name="Changes" comment="add Component Reusability to the readme">
+      <change afterPath="$PROJECT_DIR$/readme/testing/autherization.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/testing/comments.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/testing/courses.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/testing/general.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/testing/instructor.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme/testing/learner.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/CourseCard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/courses/CourseDetails.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/courses/CourseDetails.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/TESTING.md" beforeDir="false" afterPath="$PROJECT_DIR$/TESTING.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/slider/slide1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/slider/slide4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/assets/slider/slide5.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,11 +58,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/readme/testing" />
       <recent name="$PROJECT_DIR$/readme/wireframe" />
       <recent name="$PROJECT_DIR$/readme" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/github-board.png" />
-      <recent name="$PROJECT_DIR$/git-board" />
     </key>
   </component>
   <component name="SharedIndexes">
@@ -92,7 +89,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715249908117</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="add Component Reusability to the readme">
+      <option name="closed" value="true" />
+      <created>1716370835261</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1716370835261</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -120,6 +125,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="back in commits to installing phase" />
-    <option name="LAST_COMMIT_MESSAGE" value="back in commits to installing phase" />
+    <MESSAGE value="add Component Reusability to the readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Component Reusability to the readme" />
   </component>
 </project>
