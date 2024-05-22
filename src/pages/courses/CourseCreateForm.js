@@ -38,7 +38,7 @@ function CourseCreateForm() {
         setCategories(response.data.results);
       })
       .catch((error) => {
-        console.error("Error fetching course categories:", error);
+        // console.error("Error fetching course categories:", error);
         setAlertMessage(err.response.data.detail);
             setShowAlert(true);
       });
@@ -50,7 +50,7 @@ function CourseCreateForm() {
         setTags(response.data.results);
       })
       .catch((error) => {
-        console.error("Error fetching course categories:", error);
+        // console.error("Error fetching course categories:", error);
       });
   }, []);
 

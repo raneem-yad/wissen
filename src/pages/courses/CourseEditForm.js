@@ -39,8 +39,8 @@ function CourseEditForm() {
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
-  const [alertVariant, setAlertVariant] = useState('danger');
+  const [alertMessage, setAlertMessage] = useState("");
+  const [alertVariant, setAlertVariant] = useState("danger");
 
   const {
     course_name,
@@ -91,12 +91,16 @@ function CourseEditForm() {
     axiosReq
       .get("/categories/")
       .then((response) => setCategories(response.data.results))
-      .catch((error) => console.error("Error fetching course categories:", error));
+      .catch((error) => {
+        // console.error("Error fetching course categories:", error)
+      });
 
     axiosReq
       .get("/tags/")
       .then((response) => setTags(response.data.results))
-      .catch((error) => console.error("Error fetching tags:", error));
+      .catch((error) => {
+        // console.error("Error fetching tags:", error);
+      });
   }, [id]);
 
   const handleChange = (event) => {
@@ -151,23 +155,20 @@ function CourseEditForm() {
       return;
     }
 
-
     const formData = new FormData();
     Object.entries(postData).forEach(([key, value]) => {
-        if (key === "selectedTags") {
-          value.forEach((tag) => formData.append("tags", tag));
-        } else if (key === "image") {
-          if (value instanceof File) {
-            formData.append(key, value);
-          }
-        } else if (key== "selectedCategory") {
-            formData.append("category", value);
-        }
-        else {
+      if (key === "selectedTags") {
+        value.forEach((tag) => formData.append("tags", tag));
+      } else if (key === "image") {
+        if (value instanceof File) {
           formData.append(key, value);
         }
-      });
-  
+      } else if (key == "selectedCategory") {
+        formData.append("category", value);
+      } else {
+        formData.append(key, value);
+      }
+    });
 
     if (imageInput.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
@@ -180,15 +181,15 @@ function CourseEditForm() {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
         if (err.response?.data?.detail) {
-            setAlertMessage(err.response.data.detail);
-            setShowAlert(true);
+          setAlertMessage(err.response.data.detail);
+          setShowAlert(true);
         }
       }
     }
   };
 
   const renderTextField = (label, name, value, type = "text") => (
-    <Form.Group >
+    <Form.Group>
       <Form.Label>{label}</Form.Label>
       <Form.Control
         type={type}
@@ -224,15 +225,15 @@ function CourseEditForm() {
 
   return (
     <div className={styles.TopMargin}>
-        <Container>
-            {showAlert && (
-                <AlertMessage 
-                    variant={alertVariant} 
-                    message={alertMessage} 
-                    onClose={() => setShowAlert(false)} 
-                />
-            )}
-        </Container>
+      <Container>
+        {showAlert && (
+          <AlertMessage
+            variant={alertVariant}
+            message={alertMessage}
+            onClose={() => setShowAlert(false)}
+          />
+        )}
+      </Container>
       <Form onSubmit={handleSubmit} encType="multipart/form-data">
         <Row>
           <Container className={appStyles.Content}>
@@ -262,7 +263,8 @@ function CourseEditForm() {
                   title={
                     selectedCategory === ""
                       ? "Select Category"
-                      : categories.find((cat) => cat.id == selectedCategory)?.name
+                      : categories.find((cat) => cat.id == selectedCategory)
+                          ?.name
                   }
                   onSelect={handleCategorySelect}
                 >
@@ -292,9 +294,21 @@ function CourseEditForm() {
                 />
               ))}
             </Form.Group>
-            {renderTextareaField("Full Description", "description", description)}
-            {renderTextareaField("Course Requirements", "course_requirements", course_requirements)}
-            {renderTextareaField("Learning Goals", "learning_goals", learning_goals)}
+            {renderTextareaField(
+              "Full Description",
+              "description",
+              description
+            )}
+            {renderTextareaField(
+              "Course Requirements",
+              "course_requirements",
+              course_requirements
+            )}
+            {renderTextareaField(
+              "Learning Goals",
+              "learning_goals",
+              learning_goals
+            )}
           </Container>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
@@ -340,7 +354,10 @@ function CourseEditForm() {
             >
               Cancel
             </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              type="submit"
+            >
               Update
             </Button>
           </Container>

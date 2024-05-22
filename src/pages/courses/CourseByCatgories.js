@@ -20,7 +20,7 @@ function CourseByCatgories() {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching categories:', error);
+        // console.error('Error fetching categories:', error);
         setLoading(false);
       });
   }, []);
@@ -34,7 +34,7 @@ function CourseByCatgories() {
         setLoading(false);
       })
       .catch(error => {
-        console.error('Error fetching courses:', error);
+        // console.error('Error fetching courses:', error);
         setLoading(false);
       });
   }, [selectedCategory]);

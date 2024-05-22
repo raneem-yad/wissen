@@ -12,7 +12,7 @@ function InstructorTopSix() {
         setTopInstrcutors(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching top three courses:", error);
+        // console.error("Error fetching top three courses:", error);
       });
   }, []);
   return (

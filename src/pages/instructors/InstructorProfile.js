@@ -85,7 +85,7 @@ const InstructorProfile = (props) => {
       }
     } catch (error) {
       setLoading(false);
-      console.error("Error submitting rating:", error);
+      // console.error("Error submitting rating:", error);
       setRating(rating_value);
       setRatingCount(rating_count);
     }

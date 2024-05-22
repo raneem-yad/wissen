@@ -73,10 +73,10 @@ function LearnerEditProfile() {
       submissionData.append("image", imageFile);
     }
     try {
-      await axiosReq.put(`/learners/${id}`, submissionData);
+      await axiosReq.put(`/learners/${id}/`, submissionData);
       setShowAlert(true);
     } catch (error) {
-      console.error("Error:", error);
+      // console.error("Error:", error);
     }
   };
 

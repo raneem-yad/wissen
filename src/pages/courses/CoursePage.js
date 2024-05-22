@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
@@ -22,7 +21,6 @@ function CoursePage() {
   const [comments, setComments] = useState({ results: [] });
   const currentUser = useCurrentUser();
 
-
   useEffect(() => {
     const handleMount = async () => {
       try {
@@ -37,7 +35,9 @@ function CoursePage() {
     axiosReq
       .get(`/comments/?course=${id}`)
       .then((response) => setComments(response.data))
-      .catch((error) => console.error("Error fetching comments", error));
+      .catch((error) => {
+        // console.error("Error fetching comments", error);
+      });
 
     handleMount();
   }, [id]);
@@ -67,19 +67,19 @@ function CoursePage() {
 
           {comments.results?.length ? (
             <InfiniteScroll
-            children={comments.results.map((comment) => (
-              <Comment
-                key={comment.id}
-                {...comment}
-                setCourses={setCourse}
-                setComments={setComments}
-              />
-            ))}
-            dataLength={comments.results.length}
-            loader={<Asset spinner />}
-            hasMore={!!comments.next}
-            next={() => fetchMoreData(comments, setComments)}
-          />
+              children={comments.results.map((comment) => (
+                <Comment
+                  key={comment.id}
+                  {...comment}
+                  setCourses={setCourse}
+                  setComments={setComments}
+                />
+              ))}
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            />
           ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (

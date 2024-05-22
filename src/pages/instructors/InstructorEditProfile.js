@@ -77,7 +77,7 @@ function InstructorEditProfile() {
       await axiosReq.put(`/instructors/${id}/`, submissionData);
       setShowAlert(true);
     } catch (error) {
-      console.error("Error:", error);
+      // console.error("Error:", error);
     }
   };
 

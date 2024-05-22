@@ -1,15 +1,15 @@
 .DropdownItem {
-    display: inline-block;
-    max-width: 50%;
-    padding: 0px;
-  }
+  display: inline-block;
+  max-width: 50%;
+  padding: 0px;
+}
 
-  .DropdownItem i {
-    color: #1D3D74;
-  }
-  
-  .Absolute {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-  }
+.DropdownItem i {
+  color: #1D3D74;
+}
+
+.Absolute {
+  position: absolute;
+  right: 0;
+  z-index: 99;
+}

@@ -70,7 +70,7 @@ const CourseDetails = (props) => {
         setVideos(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching course vidoes:", error);
+        // console.error("Error fetching course vidoes:", error);
       });
 
     setRating(rating_value);

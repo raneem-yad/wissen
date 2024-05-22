@@ -51,8 +51,15 @@ Actual:
 Website behaved as expected.
 
 
-## validator 
+## Eslint
 
+Eslint was installed and configured locally.
+
+## Validators
+
+All CSS files were individually validated.
+
+![CSS](/readme/testing/css_validator.png)
 
 
 ## Bugs
