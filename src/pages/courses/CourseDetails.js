@@ -24,6 +24,7 @@ const CourseDetails = (props) => {
   const [isEnrolled, setIsEnrolled] = useState(props.is_learner_enrolled_in_course)
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
+  const [studentsCount, setStudentsCount] = useState(props.students_count);
   const [showModal, setShowModal] = useState(false);
   const [showShareButtonModal, setShowShareButtonModal] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
@@ -75,7 +76,9 @@ const CourseDetails = (props) => {
 
     setRating(rating_value);
     setRatingCount(rating_count);
-  }, [id]);
+    setStudentsCount(students_count);
+    setIsEnrolled(is_learner_enrolled_in_course);
+  }, [id, rating_value, students_count,rating_count,is_learner_enrolled_in_course]);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === teacher;
@@ -106,8 +109,12 @@ const CourseDetails = (props) => {
       setAlertMessage(error.response?.data.detail);
       setShowAlert(error.response?true:false);
       setAlertVariant("danger")
-      setRating(rating_value);
-      setRatingCount(rating_count);
+      // Fetch updated course data
+      const updatedCourseResponse = await axios.get(`/courses/${id}/`);
+      const updatedCourseData = updatedCourseResponse.data;
+      setRating(updatedCourseData.rating_value);
+      setRatingCount(updatedCourseData.rating_count);
+
     }
   };
 
@@ -120,6 +127,7 @@ const CourseDetails = (props) => {
           "enrolled successfully"
         );
         setIsEnrolled(true);
+        setStudentsCount((prevStudent)=> prevStudent+1)
         setAlertMessage("Congrats! You have been Enrolled in Course Successfully ^_^ More Information will be sent to you later!");
         setShowAlert(true);
         setAlertVariant("success")
@@ -262,13 +270,13 @@ const CourseDetails = (props) => {
                 />
 
                 <p className="d-inline-block mb-0">
-                  <i className="fa-regular fa-comment"></i> {comments_count}{" "}
-                  reviewer
+                  <i className="fa-regular fa-comment"></i> {comments_count}
+                
                 </p>
 
                 <p className="d-inline-block mb-0">
                   <i className="fa-solid fa-graduation-cap"></i>{" "}
-                  {students_count} Learner
+                  {studentsCount} Learner
                 </p>
 
                 {/* students */}

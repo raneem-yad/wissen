@@ -84,6 +84,7 @@ function CourseSearch(message, filter = "") {
             value={sortOption}
             onChange={handleSortChange}
           >
+            <option> Sort By</option>
             <option value="name_asc">Alphabetical (A-Z)</option>
             <option value="name_desc">Alphabetical (Z-A)</option>
             <option value="date_asc">Posted Date Ascending</option>
