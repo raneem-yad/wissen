@@ -6,14 +6,13 @@ import CourseCardFullDetails from '../../components/CourseCardFullDetails'
 function CoursesTopThree() {
   const [topCourses, setTopCourses] = useState([]);
   useEffect(() => {
-    console.log(`getting top three courses `)
     axios
       .get(`/courses/top_three`)
       .then((response) => {
         setTopCourses(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching top three courses:", error);
+        // console.error("Error fetching top three courses:", error);
       });
   }, []);
 
