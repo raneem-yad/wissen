@@ -122,7 +122,12 @@ Wireframes were created using [Balsamiq](https://balsamiq.com/) to plan content 
 
 
 ### Attending Course
+This wireframe has been designed but not implemented due to time constraints. Only the backend section has been completed, and a list is displayed on the frontend to ensure it's functioning correctly. More details will be provided in the course details section.
+
 ![Attending](/readme/wireframe/attending-course.png)
+
+
+
 
 ## Site Structure 
 
@@ -259,8 +264,16 @@ The Course Details page displays the full information about a course. Each cours
 
 The Course Details page also includes more details about the learning goals and video content.
 
-At this **version**, uploading videos as course content has been implemented in the backend only. While the videos are available in the backend, they are not yet accessible on the front end. Currently, clicking on any video links will not work, as they are placeholders and a video player has not been created due to time constraints. This feature will be included in the next version or as a future enhancement.
 
+#### One Course With Videos
+![course content](/readme/video.png)
+At this **version**, there is only one course that has video content related to it: a web design course. The video links in this list are not broken; rather, they are placeholders intended to show how the course will appear in the next version.
+
+The backend implementation for uploading videos as course content has been completed. However, these videos are not yet accessible on the frontend. Currently, clicking on any video links will not work because a video player has not been created, due to time constraints.
+
+This feature will be included in the next version or as a future enhancement.
+
+Additionally, the list was uploaded with the same video content as a test to check if the functionality works. This was done to ensure it won't affect the Cloudinary storage limit for large video content, as I have storage limits to consider.
 #### Course Enrollment
 When a learner chooses to enroll in a course, the Enrollment button is displayed. When the learner clicks on it, they will be enrolled in the course, and a green alert message will confirm the action. In this version, the enrollment process ends here due to time constraints. In the next version, the process will redirect the user to the course video content.
 
