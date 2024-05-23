@@ -131,7 +131,7 @@ const InstructorProfile = (props) => {
               <p>
                 <strong>
                   {" "}
-                  <i class="fa-brands fa-square-font-awesome-stroke"></i>{" "}
+                  <i className="fa-brands fa-square-font-awesome-stroke"></i>{" "}
                   Expertise:{" "}
                 </strong>
                 {expertise.map((item, index) => (

@@ -29,6 +29,7 @@ function InstructorEditProfile() {
     image: "",
   });
   const [imageFile, setImageFile] = useState(null);
+  const [errors, setErrors] = useState({});
   const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
@@ -48,10 +49,9 @@ function InstructorEditProfile() {
 
   useEffect(() => {
     if (showAlert) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [showAlert]);
-
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -72,6 +72,38 @@ function InstructorEditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // to check if the url is valid
+    const isValidUrl = (string) => {
+      try {
+        new URL(string);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    };
+
+    // Validate data
+    let formErrors = {};
+    if (!formData.bio) formErrors.bio = "Bio is required";
+    if (!formData.job_title) formErrors.job_title = "Job Title is required";
+    if (!formData.linkedin_link) {
+      formErrors.linkedin_link = "LinkedIn Link is required";
+    } else if (!isValidUrl(formData.linkedin_link)) {
+      formErrors.linkedin_link = "LinkedIn Link is not a valid URL";
+    }
+
+    if (!formData.website_link) {
+      formErrors.website_link = "Website Link is required";
+    } else if (!isValidUrl(formData.website_link)) {
+      formErrors.website_link = "Website Link is not a valid URL";
+    }
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
     const submissionData = new FormData();
     submissionData.append("job_title", formData.job_title);
     submissionData.append("bio", formData.bio);
@@ -83,9 +115,15 @@ function InstructorEditProfile() {
     }
 
     try {
-      const { data } = await axiosReq.put(`/instructors/${id}/`, submissionData);
+      const { data } = await axiosReq.put(
+        `/instructors/${id}/`,
+        submissionData
+      );
       setShowAlert(true);
-      setCurrentUser((prevData) => ({ ...prevData, profile_image: data.image }));
+      setCurrentUser((prevData) => ({
+        ...prevData,
+        profile_image: data.image,
+      }));
     } catch (error) {
       // console.error("Error:", error);
     }
@@ -124,8 +162,12 @@ function InstructorEditProfile() {
                     name="job_title"
                     value={formData.job_title}
                     onChange={handleChange}
+                    isInvalid={!!errors.job_title}
                     required
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.job_title}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Group controlId="websiteLink">
                   <Form.Label>Website Link</Form.Label>
@@ -135,8 +177,12 @@ function InstructorEditProfile() {
                     name="website_link"
                     value={formData.website_link}
                     onChange={handleChange}
+                    isInvalid={!!errors.website_link}
                     pattern="https?://.+"
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.website_link}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="linkedinLink">
@@ -147,8 +193,12 @@ function InstructorEditProfile() {
                     name="linkedin_link"
                     value={formData.linkedin_link}
                     onChange={handleChange}
+                    isInvalid={!!errors.linkedin_link}
                     pattern="https?://.+"
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.linkedin_link}
+                  </Form.Control.Feedback>
                 </Form.Group>
 
                 <Form.Group controlId="bio">
@@ -160,8 +210,12 @@ function InstructorEditProfile() {
                     name="bio"
                     value={formData.bio}
                     onChange={handleChange}
+                    isInvalid={!!errors.bio}
                     required
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.bio}
+                  </Form.Control.Feedback>
                 </Form.Group>
               </Col>
               <Col lg={6}>

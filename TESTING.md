@@ -62,4 +62,7 @@ All CSS files were individually validated.
 ![CSS](/readme/testing/css_validator.png)
 
 
-## Bugs
+## Unfixed Bugs
+`Warning: OverlayTrigger: Support for defaultProps will be removed from function components in a future major release. Use JavaScript default parameters instead.`
+
+This is because of using OverlayTrigger to show a tooltip message for not allowing the instructor to rate himself. I tried to solve it, but it took more time than I expected, so I prioritized other bugs over this one.
