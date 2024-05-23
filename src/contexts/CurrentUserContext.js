@@ -15,7 +15,6 @@ export const CurrentUserProvider = ({ children }) => {
   const history = useNavigate();
 
   const handleMount = async () => {
-    // console.log(`cureent user key is  ${currentUser}`);
     try {
       const { data } = await axiosRes.get("dj-rest-auth/user/", {});
       setCurrentUser(data);
@@ -38,7 +37,7 @@ export const CurrentUserProvider = ({ children }) => {
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                history.push("/signin");
+                history("/signin");
               }
               return null;
             });
@@ -63,7 +62,7 @@ export const CurrentUserProvider = ({ children }) => {
           } catch (err) {
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
-                history.push("/signin");
+                history("/signin");
               }
               return null;
             });

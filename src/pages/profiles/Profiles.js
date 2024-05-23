@@ -28,7 +28,7 @@ function Profiles() {
     <div className={styles.TopMargin}>
       {loaded ? (
         profile.role === "learner" ? (
-          <LearnerProfile {...profile.profile}  />
+          <LearnerProfile {...profile.profile} user_id={id} />
         ) : (
           <InstructorProfile {...profile.profile}  user_id={id} />
         )

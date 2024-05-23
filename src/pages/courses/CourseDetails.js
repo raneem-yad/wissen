@@ -35,18 +35,12 @@ const CourseDetails = (props) => {
   const {
     id,
     course_name,
-    category_name,
-    category_id,
-    summery,
-    level_label,
     description,
     course_requirements,
     learning_goals,
     tags_details,
     tags,
-    students,
     students_count,
-    student_id,
     is_learner_enrolled_in_course,
     rating_value,
     rating_count,
@@ -54,10 +48,8 @@ const CourseDetails = (props) => {
     comments_count,
     image,
     teacher,
-    is_course_owner,
     teacher_profile_id,
     teacher_image,
-    posted_date,
     updated_date,
     coursePage,
     setCourses,
@@ -79,6 +71,12 @@ const CourseDetails = (props) => {
     setStudentsCount(students_count);
     setIsEnrolled(is_learner_enrolled_in_course);
   }, [id, rating_value, students_count,rating_count,is_learner_enrolled_in_course]);
+
+  useEffect(() => {
+    if (showAlert) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showAlert]);
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === teacher;

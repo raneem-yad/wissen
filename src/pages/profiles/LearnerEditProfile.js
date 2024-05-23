@@ -1,20 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 import Asset from "../../components/Assets";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/CourseCreateEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import Upload from "../../assets/upload.png";
-import {
-  Form,
-  Button,
-  Row,
-  Image,
-  Container,
-  Col,
-  Alert,
-} from "react-bootstrap";
+
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Image from 'react-bootstrap/Image';
+import Container from 'react-bootstrap/Container';
+import Alert from 'react-bootstrap/Alert';
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function LearnerEditProfile() {
   const { id } = useParams();
@@ -29,6 +28,7 @@ function LearnerEditProfile() {
     owner_username:""
   });
   const [imageFile, setImageFile] = useState(null);
+  const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -44,6 +44,13 @@ function LearnerEditProfile() {
 
     handleMount();
   }, [id]);
+
+  useEffect(() => {
+    if (showAlert) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showAlert]);
+
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -73,8 +80,10 @@ function LearnerEditProfile() {
       submissionData.append("image", imageFile);
     }
     try {
-      await axiosReq.put(`/learners/${id}/`, submissionData);
+      const { data } = await axiosReq.put(`/learners/${id}/`, submissionData);
       setShowAlert(true);
+      setCurrentUser((prevData) => ({ ...prevData, profile_image: data.image }));
+      
     } catch (error) {
       // console.error("Error:", error);
     }

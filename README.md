@@ -544,25 +544,35 @@ Testing can be found in the [TESTING.md file](https://github.com/raneem-yad/wiss
 <br>
 
 ## Deployment
-## Heroku Deployment
+### Heroku
 
-The site was deployed to Heroku. The steps to deploy are as follows:
+This project is deployed on Heroku, a cloud platform service that enables easy deployment and scaling for web applications. The deployment process includes the following steps:
 
-* Navigate to heroku and create an account
-* Click the new button in the top right corner
-* Select create new app
-* Enter app name
-* Select region and click create app
-* Click the resources tab and search for Heroku Postgres
-* Select hobby dev and continue
+#### Initial Setup
 
-* Click the deploy tab
-* Scroll down to Connect to GitHub and sign in / authorize when prompted
-* In the search box, find the repositoy you want to deploy and click connect
-* Scroll down to Manual deploy and choose the main branch
-* Click deploy
-<hr>
-<br>
+1. **Create a Heroku Account**: Sign up for a Heroku account at [Heroku's website](https://www.heroku.com/).
+2. **Install Heroku CLI**: Download and install the Heroku Command Line Interface (CLI) to interact with Heroku from your local machine.
+
+#### Preparing the Application
+
+1. **Procfile**: Create a `Procfile` in your project root directory. This file tells Heroku how to run your application.
+2. **Requirements.txt**: Ensure you have a `requirements.txt` file listing all project dependencies.
+3. **Config Vars**: Set up necessary configuration variables in Heroku (like `SECRET_KEY`, database URL, etc.).
+
+#### Deployment
+
+1. **Create a Heroku App**: Use the Heroku CLI to create a new app.
+2. **Add Buildpacks**: If necessary, add the correct buildpacks via the Heroku dashboard or CLI.
+3. **Deploy**: Push your code to Heroku either by connecting your GitHub repository to Heroku or using the Heroku CLI to deploy your application.
+4. **Database Migration (if applicable)**: Run database migrations using the Heroku CLI.
+
+#### Final Steps
+
+1. **Enable the Web Dyno**: Make sure the web dyno is up and running after deployment.
+2. **Open the App**: You can open your application from the Heroku dashboard or using the CLI command `heroku open`.
+
+For more detailed instructions and troubleshooting, visit the official [Heroku Dev Center](https://devcenter.heroku.com/).
+
 
 The live link can be found here: 
 [Live Site](https://wissen-c163302e84c1.herokuapp.com/)
@@ -625,4 +635,3 @@ Most commonly, forks are used to either propose changes to someone else's projec
 1. [Canva Website](https://www.canva.com/): is used for creating Website Logo by me.
 2. Sign up & Sign in images taken from [freepik](https://www.freepik.com/).
 3. Courses and Slider Images were taken from [pexel](https://www.pexels.com/).
-4. 

@@ -14,6 +14,7 @@ import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Alert from "react-bootstrap/Alert";
+import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
 function InstructorEditProfile() {
   const { id } = useParams();
@@ -28,6 +29,7 @@ function InstructorEditProfile() {
     image: "",
   });
   const [imageFile, setImageFile] = useState(null);
+  const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -43,6 +45,13 @@ function InstructorEditProfile() {
 
     handleMount();
   }, [id]);
+
+  useEffect(() => {
+    if (showAlert) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [showAlert]);
+
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
@@ -74,8 +83,9 @@ function InstructorEditProfile() {
     }
 
     try {
-      await axiosReq.put(`/instructors/${id}/`, submissionData);
+      const { data } = await axiosReq.put(`/instructors/${id}/`, submissionData);
       setShowAlert(true);
+      setCurrentUser((prevData) => ({ ...prevData, profile_image: data.image }));
     } catch (error) {
       // console.error("Error:", error);
     }
