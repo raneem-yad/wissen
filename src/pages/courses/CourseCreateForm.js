@@ -131,13 +131,18 @@ function CourseCreateForm() {
         return;
     }
 
-    // Validation for selectedCategory
-    if (!selectedCategory) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        selectedCategory: ["Category is required."]
-      }));
-      return; // Prevent form submission
+    // Validating the form
+    let formErrors = {};
+    if (!title) formErrors.title = ["Title is required."];
+    if (!summary) formErrors.summary = ["Summary is required."];
+    if (!selectedCategory) formErrors.selectedCategory = ["Category is required."];
+    if (!description) formErrors.description = ["Description is required."];
+    if (!course_requirement) formErrors.course_requirement = ["Course Requirements is required."];
+    if (!learning_goals) formErrors.learning_goals = ["Learning Goals is required."];
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
     }
 
     const tagsArray = selectedTags.map(tag => parseInt(tag));

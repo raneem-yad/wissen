@@ -147,11 +147,16 @@ function CourseEditForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!selectedCategory) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        selectedCategory: ["Category is required."],
-      }));
+    let formErrors = {};
+    if (!course_name) formErrors.course_name = ["Course Name is required."];
+    if (!summery) formErrors.summery = ["Summary is required."];
+    if (!selectedCategory) formErrors.selectedCategory = ["Category is required."];
+    if (!description) formErrors.description = ["Description is required."];
+    if (!course_requirements) formErrors.course_requirements = ["Course Requirements is required."];
+    if (!learning_goals) formErrors.learning_goals = ["Learning Goals is required."];
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
       return;
     }
 

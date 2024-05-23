@@ -107,7 +107,7 @@ const CourseDetails = (props) => {
       setAlertMessage(error.response?.data.detail);
       setShowAlert(error.response?true:false);
       setAlertVariant("danger")
-      // Fetch updated course data
+      
       const updatedCourseResponse = await axios.get(`/courses/${id}/`);
       const updatedCourseData = updatedCourseResponse.data;
       setRating(updatedCourseData.rating_value);
