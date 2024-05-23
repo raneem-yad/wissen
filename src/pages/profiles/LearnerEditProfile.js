@@ -15,6 +15,8 @@ import Container from 'react-bootstrap/Container';
 import Alert from 'react-bootstrap/Alert';
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 
+
+
 function LearnerEditProfile() {
   const { id } = useParams();
   const imageInput = useRef(null);
@@ -28,6 +30,7 @@ function LearnerEditProfile() {
     owner_username:""
   });
   const [imageFile, setImageFile] = useState(null);
+  const [errors, setErrors] = useState({});
   const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
@@ -71,6 +74,18 @@ function LearnerEditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate data
+    let formErrors = {};
+    if (!formData.bio) formErrors.bio = "Bio is required";
+    if (!formData.full_name) formErrors.full_name = "Full name is required";
+
+    if (Object.keys(formErrors).length > 0) {
+      setErrors(formErrors);
+      return;
+    }
+
+
     const submissionData = new FormData();
     submissionData.append("bio", formData.bio);
     submissionData.append("full_name", formData.full_name);
@@ -122,8 +137,12 @@ function LearnerEditProfile() {
                     name="full_name"
                     value={formData.full_name}
                     onChange={handleChange}
+                    isInvalid={!!errors.full_name}
                     required
                   />
+                  <Form.Control.Feedback type="invalid">
+                    {errors.full_name}
+                  </Form.Control.Feedback>
                 </Form.Group>
                 <Form.Control
                   as="textarea"
@@ -132,8 +151,12 @@ function LearnerEditProfile() {
                   name="bio"
                   value={formData.bio}
                   onChange={handleChange}
+                  isInvalid={!!errors.bio}
                   required
                 />
+                 <Form.Control.Feedback type="invalid">
+                    {errors.bio}
+                  </Form.Control.Feedback>
               </Form.Group>
 
               <Container
