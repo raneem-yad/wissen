@@ -21,7 +21,9 @@ import AlertMessage from "../../components/AlertMessage";
 
 const CourseDetails = (props) => {
   const [videos, setVideos] = useState([]);
-  const [isEnrolled, setIsEnrolled] = useState(props.is_learner_enrolled_in_course)
+  const [isEnrolled, setIsEnrolled] = useState(
+    props.is_learner_enrolled_in_course
+  );
   const [rating, setRating] = useState(props.rating_value);
   const [ratingCount, setRatingCount] = useState(props.rating_count);
   const [studentsCount, setStudentsCount] = useState(props.students_count);
@@ -70,11 +72,17 @@ const CourseDetails = (props) => {
     setRatingCount(rating_count);
     setStudentsCount(students_count);
     setIsEnrolled(is_learner_enrolled_in_course);
-  }, [id, rating_value, students_count,rating_count,is_learner_enrolled_in_course]);
+  }, [
+    id,
+    rating_value,
+    students_count,
+    rating_count,
+    is_learner_enrolled_in_course,
+  ]);
 
   useEffect(() => {
     if (showAlert) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   }, [showAlert]);
 
@@ -105,37 +113,36 @@ const CourseDetails = (props) => {
       setLoading(false);
       // console.error("Error submitting rating:", error);
       setAlertMessage(error.response?.data.detail);
-      setShowAlert(error.response?true:false);
-      setAlertVariant("danger")
-      
+      setShowAlert(error.response ? true : false);
+      setAlertVariant("danger");
+
       const updatedCourseResponse = await axios.get(`/courses/${id}/`);
       const updatedCourseData = updatedCourseResponse.data;
       setRating(updatedCourseData.rating_value);
       setRatingCount(updatedCourseData.rating_count);
-
     }
   };
 
-  const handleEnrollment = async()=>{
+  const handleEnrollment = async () => {
     try {
       const response = await axiosReq.post(`/courses/${id}/enroll/`);
 
       if (response.status === 200) {
-        console.log(
-          "enrolled successfully"
-        );
+        console.log("enrolled successfully");
         setIsEnrolled(true);
-        setStudentsCount((prevStudent)=> prevStudent+1)
-        setAlertMessage("Congrats! You have been Enrolled in Course Successfully ^_^ More Information will be sent to you later!");
+        setStudentsCount((prevStudent) => prevStudent + 1);
+        setAlertMessage(
+          "Congrats! You have been Enrolled in Course Successfully ^_^ More Information will be sent to you later!"
+        );
         setShowAlert(true);
-        setAlertVariant("success")
+        setAlertVariant("success");
       }
     } catch (error) {
       setAlertMessage(error.response?.data.detail);
-      setShowAlert(error.response? true : false);
-      setAlertVariant("danger")
+      setShowAlert(error.response ? true : false);
+      setAlertVariant("danger");
     }
-  }
+  };
 
   const handleEdit = () => navigate(`/courses/${id}/edit`);
   const handleDelete = () => setShowModal(true);
@@ -152,7 +159,7 @@ const CourseDetails = (props) => {
       // console.log(err);
       setAlertMessage("Error Deleting the course! Try again later!");
       setShowAlert(true);
-      setAlertVariant("danger")
+      setAlertVariant("danger");
     }
   };
 
@@ -182,38 +189,41 @@ const CourseDetails = (props) => {
         {/* staticts part  */}
 
         {/* rating */}
-        {!loading && (is_owner ? (
-          <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>You can't rate your own Course</Tooltip>}
-          >
-            <div>
-              <Rating
-                onClick={handleRating}
-                initialValue={rating}
-                readonly={true}
-              />
-            </div>
-          </OverlayTrigger>
-        ) : currentUser ? (
-          <Rating
-            onClick={handleRating}
-            initialValue={rating}
-            readonly={false}
-          />
-        ) : (
-          <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>You have to login first</Tooltip>}
-          >
+        {!loading &&
+          (is_owner ? (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You can't rate your own Course</Tooltip>}
+            >
+              <div>
+                <Rating
+                  onClick={handleRating}
+                  initialValue={rating}
+                  readonly={true}
+                />
+              </div>
+            </OverlayTrigger>
+          ) : currentUser ? (
             <Rating
               onClick={handleRating}
-              initialValue={rating_value}
-              readonly={true}
+              initialValue={rating}
+              readonly={false}
             />
-          </OverlayTrigger>
-        ))}
-        {!loading && ratingCount && <p className="text-muted">Rated by {ratingCount}</p>}
+          ) : (
+            <OverlayTrigger
+              placement="top"
+              overlay={<Tooltip>You have to login first</Tooltip>}
+            >
+              <Rating
+                onClick={handleRating}
+                initialValue={rating_value}
+                readonly={true}
+              />
+            </OverlayTrigger>
+          ))}
+        {!loading && ratingCount && (
+          <p className="text-muted">Rated by {ratingCount}</p>
+        )}
         {/* instructor and data about it */}
         {teacher && (
           <p>
@@ -233,10 +243,9 @@ const CourseDetails = (props) => {
           <p>
             <strong>Tags: </strong>
             {tags_details.map((item, index) => (
-              <Link to={`tags/${tags[index]}`} key={tags[index]}>
-                {" "}
-                <span>#{item}</span>
-              </Link>
+              <span key={tags[index]} style={{ marginRight: "2px" }}>
+                #{item}
+              </span>
             ))}
           </p>
         )}
@@ -245,7 +254,10 @@ const CourseDetails = (props) => {
         <Card className={styles.CustomCard}>
           <Card.Img variant="top" src={image} />
           {!isEnrolled && currentUser?.profile_type === "learner" && (
-            <Card.Header className={`text-center ${styles.CustomCardHeader}`} onClick={handleEnrollment}>
+            <Card.Header
+              className={`text-center ${styles.CustomCardHeader}`}
+              onClick={handleEnrollment}
+            >
               <h2>Enroll</h2>
             </Card.Header>
           )}
@@ -269,12 +281,11 @@ const CourseDetails = (props) => {
 
                 <p className="d-inline-block mb-0">
                   <i className="fa-regular fa-comment"></i> {comments_count}
-                
                 </p>
 
                 <p className="d-inline-block mb-0">
-                  <i className="fa-solid fa-graduation-cap"></i>{" "}
-                  {studentsCount} Learner
+                  <i className="fa-solid fa-graduation-cap"></i> {studentsCount}{" "}
+                  Learner
                 </p>
 
                 {/* students */}
